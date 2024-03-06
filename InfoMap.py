@@ -1,6 +1,6 @@
 InfoMap = {
     "GPM": {
-        "operations": ["AUTH", "PING", "PLANTS", "DATA"],
+        "operations": ["AUTH", "PING", "PLANTS", "ELEMENTS", "ALLDATASOURCES", "DATASOURCE", "DATA"],
         "pipeline": {
             "ops": ["AUTH", "DATA"],
             "help": '''
@@ -11,6 +11,9 @@ InfoMap = {
             "AUTH": "Account/Token/",
             "PING": "Account/Ping",
             "PLANTS": "Plant",
+            "ELEMTNS": "Plant/{}/Element",
+            "ALLDATASOURCES": "Plant/{}/DataSource",
+            "DATASOURCE": "Plant/{}/Element/{}/DataSource",
             "DATA": "DataList/v2/"
         },
         "headers": {

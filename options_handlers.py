@@ -18,24 +18,23 @@ def init_config(config_file):
         sys.exit(2)
     return
 
-def set_portafolio(portafolio, config_file_path):
-    # Cargar datos existentes desde el archivo (o un diccionario vacío si el archivo está vacío o no existe)
+def update_config(new_entries, config_file_path):
     try:
         with open(config_file_path, 'r') as config_file:
             data = json.load(config_file)
     except (FileNotFoundError, json.JSONDecodeError):
         data = {}
-    data["portafolio"] = portafolio
 
-    # Escribir el diccionario actualizado
+    for key, value in new_entries.items():
+        data[key] = value
+
     with open(config_file_path, 'w') as config_file:
         json.dump(data, config_file, indent=2)
 
-    # Imprimir
-    with open(config_file_path, 'r') as config_file:
-        updated_data = json.load(config_file)
-        for key, value in updated_data.items():
-            print(f'{key}: {value}')
+    show_config(config_file_path)
+
+def set_portafolio(portafolio, config_file_path):
+    update_config({"portafolio": portafolio}, config_file_path)
 
 def set_date(arg, config_file_path):
     try:
@@ -54,27 +53,8 @@ def set_date(arg, config_file_path):
     if start_date and end_date and end_date < start_date:
         print("Error: La fecha de fin debe ser posterior a la fecha de inicio.")
         sys.exit(1)
+    update_config({"start_date": start_date, "end_date": end_date}, config_file_path)
 
-    # Cargar datos existentes desde el archivo (o un diccionario vacío si el archivo está vacío o no existe)
-    try:
-        with open(config_file_path, 'r') as config_file:
-            data = json.load(config_file)
-    except (FileNotFoundError, json.JSONDecodeError):
-        data = {}
-
-    # Actualizar el diccionario con las nuevas fechas
-    data["start_date"] = start_date
-    data["end_date"] = end_date
-
-    # Escribir el diccionario actualizado al archivo
-    with open(config_file_path, 'w') as config_file:
-        json.dump(data, config_file, indent=2)
-
-    # Imprimir el contenido actualizado para verificar
-    with open(config_file_path, 'r') as config_file:
-        updated_data = json.load(config_file)
-        for key, value in updated_data.items():
-            print(f'{key}: {value}')
 
 def load_saved_dates(config_file_path):
     try:
@@ -100,8 +80,13 @@ def show_config(config_file_path):
     try:
         with open(config_file_path, 'r') as config_file:
             data = json.load(config_file)
+            print("\n\tConfiguracion actual:\n\n")
+
             for key, value in data.items():
-                print(f'\t{key}: {value}')
+                if key == "token":
+                    print(f'{key}:\t{"*" * 10}')
+                else:
+                    print(f'{key}:\t{value}')
     except (FileNotFoundError, json.JSONDecodeError):
         print("No se encontraron datos guardados.")
         sys.exit()
@@ -114,4 +99,38 @@ def reset_config(config_file_path):
         print("No se encontro el archivo de configuracion.")
     sys.exit()
 
-    
+def set_plant_id(plant_id, config_file_path):
+    update_config({"plant_id": plant_id}, config_file_path)
+
+def set_element_id(element_id, config_file_path):
+    update_config({"element_id": element_id}, config_file_path)
+
+def set_grouping(grouping, config_file_path):
+    if grouping not in ["raw", "minute", "hour", "day", "month", "year"]:
+        print("Error: El agrupamiento debe ser 'hour', 'day' o 'month'")
+        sys.exit(1)
+    update_config({"grouping": grouping}, config_file_path)
+
+def set_granularity(granularity, grouping, config_file_path):
+    if grouping == "minute" and granularity not in range(1, 61):
+        print("Error: La granularidad debe ser un entero entre 1 y 60")
+        sys.exit(1)
+    if grouping == "hour" and granularity not in range(1, 24):
+        print("Error: La granularidad debe ser un entero entre 1 y 23")
+        sys.exit(1)
+    if grouping == "day" and granularity not in range(1, 32):
+        print("Error: La granularidad debe ser un entero entre 1 y 31")
+        sys.exit(1)
+    if grouping == "month" and granularity not in range(1, 13):
+        print("Error: La granularidad debe ser un entero entre 1 y 12")
+        sys.exit(1)
+    if grouping == "year" and granularity < 1:
+        print("Error: La granularidad debe ser un entero mayor a 0")
+        sys.exit(1)
+    update_config({"granularity": granularity}, config_file_path)
+
+def set_aggregation(agregation, config_file_path):
+    if agregation not in range(0, 29):
+        print("Error: La agregacion debe ser un entero entre 0 y 28")
+        sys.exit(1)
+    update_config({"agregation": agregation}, config_file_path)

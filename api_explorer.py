@@ -21,6 +21,18 @@ Opciones:
     -p, --set-portafolio    Establece el portafolio de trabajo en el archivo de configuracion
     -c, --config            Muestra el archivo de configuracion
     -r, --reset             Elimina el archivo de configuracion
+    -i, --interactive       Modo interactivo, excluyente con otras opciones, en desarrollo
+    --plant-id              ID de la planta para operaciones especificas
+    --set-plant-id          Establece el ID de la planta en el archivo de configuracion
+    --element-id            ID del elemento para operaciones especificas
+    --set-element-id        Establece el ID del elemento en el archivo de configuracion
+    --grouping              Formato de agrupamiento de datos, uso: [raw, minute, hour, day, month, year]
+    --set-grouping          Establece el agrupamiento de datos en el archivo de configuracion
+    --granularity           Formato de granularidad de datos
+    --set-granularity       Establece la granularidad de datos en el archivo de configuracion
+    --aggregation            Formato de agregacion de datos. uso: 0-28
+    --set-aggregation        Establece la agregacion de datos en el archivo de configuracion
+
 
 Cualquier operacion (-o -O -a) requiere el nombre del portafolio, debe configurarse previamente con -p o proveerse
 con -n. Si no se especifica una fecha de inicio y fin, se usaran las fechas guardades en archivo de configuracion,
@@ -47,9 +59,13 @@ python api_download.py -h
 
 # Opciones y argumentos
 
-options="hn:PNas:e:o:Od:Dp:cr"
-long_options=["help", "portafolio=", "portafolios", "pipe", "start-date=", "end-date=", "operation=",
-              "show-operations", "set-date=", "show-date", "set-portafolio=", "config", "reset"]
+options="ihn:PNas:e:o:Od:Dp:cr"
+long_options=["interactive", "help", "portafolio=", "portafolios",
+              "pipe", "start-date=", "end-date=", "operation=",
+              "show-operations", "set-date=", "show-date", "set-portafolio=",
+              "config", "reset", "plant-id=", "set-plant-id=", "element-id=",
+              "set-element-id=, grouping=", "set-grouping=", "granularity=",
+              "set-granularity=", "aggregation=", "set-aggregation="]
 
 
 
@@ -59,10 +75,8 @@ Portafolios = ["GPM", "AlsoEnergy"]
 
 
 def main(argv):
-    portafolio = ""
+
     toPerform = []
-    start_date = None
-    end_date = None
 
     # archivo de configuracion
     config_file = "config.json"
@@ -71,16 +85,20 @@ def main(argv):
     if not os.path.exists(config_file_path):
         init_config(config_file_path)
 
-    else:
-        with open(config_file_path, 'r') as config_file:
-            try:
-                data = json.load(config_file)
-                portafolio = data["portafolio"]
-                start_date = data["start_date"]
-                end_date = data["end_date"]
-            except json.JSONDecodeError:
-                print("Error: Archivo de configuracion vacio o corrupto.")
-                sys.exit(1)
+    with open(config_file_path, 'r') as config_file:
+        try:
+            data = json.load(config_file)
+            portafolio = data.get("portafolio")
+            start_date = data.get("start_date")
+            end_date = data.get("end_date")
+            plant_id = data.get("plant_id")
+            element_id = data.get("element_id")
+            grouping = data.get("grouping")
+            granularity = data.get("granularity")
+            aggregation = data.get("aggregation")
+        except json.JSONDecodeError:
+            print("Error: Archivo de configuracion vacio o corrupto.")
+            sys.exit(1)
 
     # tratar argumentos y opciones
     try:
@@ -89,6 +107,12 @@ def main(argv):
         print(exceptMessage)
         sys.exit(2)
     for opt, arg in opts:
+        if opt in ("-i", "--interactive"):
+            print('''
+                  Modo interactivo en desarrollo.
+                  ''')
+            sys.exit(0)
+
         # Ayuda
         if opt in ("-h", "--help"):
             print(helpmessage)
@@ -126,13 +150,31 @@ def main(argv):
                 sys.exit(1)
             print(f"Fecha de fin: {end_date}")
 
+        # elegir ID de planta
+        elif opt in ("--plant-id"):
+            plant_id = arg
+            print(f"ID de planta: {plant_id}")
 
-        # setear fechas de inicio y fin en archivo de configuracion            
-        elif opt in ("-d", "--set-date"):
-            print("Seteando fechas")
-            set_date(arg, config_file_path)
-            sys.exit(0)
+        # elegir ID de elemento
+        elif opt in ("--element-id"):
+            element_id = arg
+            print(f"ID de elemento: {element_id}")
         
+        # elegir formato de agrupamiento
+        elif opt in ("--grouping"):
+            grouping = arg
+            print(f"Agrupamiento: {grouping}")
+
+        # elegir formato de granularidad
+        elif opt in ("--granularity"):
+            granularity = arg
+            print(f"Granularidad: {granularity}")
+
+        # elegir formato de agregacion
+        elif opt in ("--aggregation"):
+            aggregation = arg
+            print(f"Agregacion: {aggregation}")
+
         # mostrar fechas de inicio y fin guardadas en archivo de configuracion
         elif opt in ("-D", "--show-date"):
             show_dates(config_file_path)
@@ -207,17 +249,47 @@ def main(argv):
                 sys.exit(1)
             sys.exit(0)
 
+        # setear fechas de inicio y fin en archivo de configuracion            
+        elif opt in ("-d", "--set-date"):
+            print("Seteando fechas")
+            set_date(arg, config_file_path)
+            sys.exit(0)
+
+        # setear ID de planta en archivo de configuracion
+        elif opt in ("--set-plant-id"):
+            print("Seteando ID de planta")
+            set_plant_id(arg, config_file_path)
+            sys.exit(0)
+
+        # setear ID de elemento en archivo de configuracion
+        elif opt in ("--set-element-id"):
+            print("Seteando ID de elemento")
+            set_element_id(arg, config_file_path)
+            sys.exit(0)
+
+        # setear formato de agrupamiento en archivo de configuracion
+        elif opt in ("--set-grouping"):
+            print("Seteando formato de agrupamiento")
+            set_grouping(arg, config_file_path)
+            sys.exit(0)
+        
+        # setear formato de granularidad en archivo de configuracion
+        elif opt in ("--set-granularity"):
+            print("Seteando formato de granularidad")
+            set_granularity(int(arg), grouping, config_file_path)
+            sys.exit(0)
+        
+        # setear formato de agregacion en archivo de configuracion
+        elif opt in ("--set-aggregation"):
+            print("Seteando formato de agregacion")
+            set_aggregation(int(arg), config_file_path)
+            sys.exit(0)
+
+        
+
     print("Paso comprobacion de argumentos y opciones.")
     # si llega hasta aca es porque se realizaran operaciones
-    # verificar fechas de inicio y fin
-    try:
-        # si no se especificaron fechas cargar las guardadas en el archivo de configuracion
-        if (start_date is None and end_date is None):
-            start_date, end_date = load_saved_dates(config_file_path)
-            print(f"Fechas cargadas desde archivo de configuracion: {start_date} - {end_date}")
-    except (FileNotFoundError, json.JSONDecodeError):
-        print("Debe especificar fechas o configurarlas previamente.")
-        sys.exit(1)
+
     try:
         # Verificar que ambas fechas se han especificado juntas
         if (start_date is None and end_date is not None) or (start_date is not None and end_date is None):
@@ -226,6 +298,7 @@ def main(argv):
         # Verificar que la fecha de fin sea posterior a la fecha de inicio
         if start_date and end_date and end_date < start_date:
             print("Error: La fecha de fin debe ser posterior a la fecha de inicio.")
+            print(f"Fecha de inicio: {start_date}\t\tFecha de fin: {end_date}")
             sys.exit(1)
     except Exception as e:
         print(f"Error inesperado: {e}")
@@ -244,30 +317,33 @@ def main(argv):
             if token is None:
                 print("Error: Autenticacion fallida.")
                 sys.exit(1)
+
         if op == "PING":
             if ping(portafolio, config_file_path):
                 print("Ping exitoso.")
             else:
-                if len(toPerform) > 1:
-                    print("Ping fallido, autenticando...")
-                    token = auth(portafolio, config_file_path)
-                else:
-                    print("Ping fallido.")
-                    sys.exit(1)
+                print("Ping fallido.")
+                sys.exit(1)
+
         if op == "PLANTS":
             if not authed:
-                if ping(portafolio, config_file_path):
-                    authed = True
-                else:
-                    print("Ping fallido, autenticando...")
-                    token = auth(portafolio, config_file_path)
-                    if token:
-                        authed = True
-                    else:
-                        print("Error: Autenticacion fallida.")
-                        sys.exit(1)
+                authed = check_gpm_login(portafolio, config_file_path)
             plants(portafolio, config_file_path)
 
+        if op == "ELEMENTS":
+            if not authed:
+                authed = check_gpm_login(portafolio, config_file_path)
+            elements(portafolio, config_file_path, plant_id)
+
+        if op == "ALLDATASOURCES":
+            if not authed:
+                authed = check_gpm_login(portafolio,config_file_path)
+            all_datasources(portafolio, config_file_path, plant_id)
+
+        if op == "DATASOURCE":
+            if not authed:
+                authed = check_gpm_login(portafolio, config_file_path)
+            datasource(portafolio, config_file_path, plant_id, element_id)
 
 if __name__ == "__main__":
     main(sys.argv[1:])
