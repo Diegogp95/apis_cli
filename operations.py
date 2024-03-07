@@ -27,12 +27,6 @@ def save_token(token, config_file_path):
     with open(config_file_path, 'w') as config_file:
         json.dump(data, config_file, indent=2)
 
-    # Imprimir
-    with open(config_file_path, 'r') as config_file:
-        updated_data = json.load(config_file)
-        for key, value in updated_data.items():
-            print(f'\t{key}: {value}')
-
 def check_gpm_login(portafolio, config_file_path):
     if ping(portafolio, config_file_path):
         return True
