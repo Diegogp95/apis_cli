@@ -71,6 +71,11 @@ def write_data_to_file(file_head, data, relevant_items, mode):
 
     if mode == 'static': print(f"Datos de elementos guardados en {output_path}")
 
+def load_token(config_file_path):
+    with open(config_file_path, "r") as config_file:
+        data = json.load(config_file)
+    return data["token"]
+
 
 ####### Funciones de operaciones
 
@@ -102,13 +107,9 @@ def auth(portafolio, config_file_path):
         return None
     
 def all_datasources(portafolio, config_file_path, plant_id, mode='static'):
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
-
-    url = InfoMap[portafolio]["paths"]["BASE"] + InfoMap[portafolio]["paths"]["DATASOURCES"].format(plant_id)
+    url = InfoMap[portafolio]["paths"]["BASE"] + InfoMap[portafolio]["paths"]["ALLDATASOURCES"].format(plant_id)
     headers = InfoMap[portafolio]["headers"]
-    with open(config_file_path, "r") as config_file:
-        data = json.load(config_file)
-    token = data["token"]
+    token = load_token(config_file_path)
     headers["Authorization"] = f"Bearer {token}"
     try:
         response = requests.get(url, headers=headers)
@@ -119,17 +120,13 @@ def all_datasources(portafolio, config_file_path, plant_id, mode='static'):
     
     DATA = response.json()
     relevant_items = ["DataSourceName", "DataSourceId"]
-    write_data_to_file({}, DATA, relevant_items, mode)
+    write_data_to_file({'PlantId': plant_id}, DATA, relevant_items, mode)
     return
 
 def datasource(portafolio, config_file_path, plant_id, element_id, mode='static'):
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
-
     url = InfoMap[portafolio]["paths"]["BASE"] + InfoMap[portafolio]["paths"]["DATASOURCE"].format(plant_id, element_id)
     headers = InfoMap[portafolio]["headers"]
-    with open(config_file_path, "r") as config_file:
-        data = json.load(config_file)
-    token = data["token"]
+    token = load_token(config_file_path)
     headers["Authorization"] = f"Bearer {token}"
     try:
         response = requests.get(url, headers=headers)
@@ -152,9 +149,7 @@ def ping(portafolio, config_file_path):
         return
     url = InfoMap[portafolio]["paths"]["BASE"] + InfoMap[portafolio]["paths"]["PING"]
     headers = InfoMap[portafolio]["headers"]
-    with open(config_file_path, "r") as config_file:
-        data = json.load(config_file)
-    token = data["token"]
+    token = load_token(config_file_path)
     headers["Authorization"] = f"Bearer {token}"
 
     try:
@@ -166,16 +161,13 @@ def ping(portafolio, config_file_path):
         return False
     
 def plants(portafolio, config_file_path, mode='static'):
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
     if portafolio != "GPM":
         print("Plants no disponible para este portafolio.")
         return
     url = InfoMap[portafolio]["paths"]["BASE"] + InfoMap[portafolio]["paths"]["PLANTS"]
     headers = InfoMap[portafolio]["headers"]
-    with open(config_file_path, "r") as config_file:
-        data = json.load(config_file)
-    token = data["token"]
+    token = load_token(config_file_path)
     headers["Authorization"] = f"Bearer {token}"
     try:
         response = requests.get(url, headers=headers)
@@ -198,11 +190,9 @@ def elements(portafolio, config_file_path, plant_id, mode='static'):
     if portafolio != "GPM":
         print("Elements no disponible para este portafolio.")
         return
-    url = InfoMap[portafolio]["paths"]["BASE"] + InfoMap[portafolio]["paths"]["ELEMTNS"].format(plant_id)
+    url = InfoMap[portafolio]["paths"]["BASE"] + InfoMap[portafolio]["paths"]["ELEMENTS"].format(plant_id)
     headers = InfoMap[portafolio]["headers"]
-    with open(config_file_path, "r") as config_file:
-        data = json.load(config_file)
-    token = data["token"]
+    token = load_token(config_file_path)
     headers["Authorization"] = f"Bearer {token}"
     try:
         response = requests.get(url, headers=headers)
@@ -222,3 +212,37 @@ def elements(portafolio, config_file_path, plant_id, mode='static'):
     relevant_items = ["Name", "Identifier", "TypeString"]
     write_data_to_file(file_head, DATA, relevant_items, mode)
     return
+
+def get_data(portafolio, config_file_path, datasource_ids, start_date,
+        end_date, grouping="minutes", granularity=15, aggregation=1):
+    url = InfoMap[portafolio]["paths"]["BASE"] + InfoMap[portafolio]["paths"]["DATA"]
+    headers = InfoMap[portafolio]["headers"]
+    token = load_token(config_file_path)
+    headers["Authorization"] = f"Bearer {token}"
+
+    datasource_ids = ",".join(map(str, datasource_ids))
+
+    params = {
+        "dataSourceIds": datasource_ids,
+        "startDate": start_date,
+        "endDate": end_date,
+        "grouping": grouping,
+        "granularity": granularity,
+        "aggregationType": aggregation
+    }
+
+    try:
+        response = requests.get(url, headers=headers, params=params)
+        response.raise_for_status()
+    except requests.exceptions.HTTPError as err:
+        print(err)
+        return None
+    except requests.exceptions.RequestException as err:
+        print(err)
+        return None
+
+    DATA = response.json()
+
+    relevant_items = ["DataSourceId", "Date", "Value"]
+
+    write_data_to_file({}, DATA, relevant_items, 'static')

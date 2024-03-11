@@ -30,8 +30,10 @@ Opciones:
     --set-grouping          Establece el agrupamiento de datos en el archivo de configuracion
     --granularity           Formato de granularidad de datos
     --set-granularity       Establece la granularidad de datos en el archivo de configuracion
-    --aggregation            Formato de agregacion de datos. uso: 0-28
-    --set-aggregation        Establece la agregacion de datos en el archivo de configuracion
+    --aggregation           Formato de agregacion de datos. uso: 0-28
+    --set-aggregation       Establece la agregacion de datos en el archivo de configuracion
+    --ids                   IDs de las fuentes de data
+    --set-ids               Establece los IDs de las fuentes de data en el archivo de configuracion
 
 
 Cualquier operacion (-o -O -a) requiere el nombre del portafolio, debe configurarse previamente con -p o proveerse
@@ -64,8 +66,9 @@ long_options=["interactive", "help", "portafolio=", "portafolios",
               "pipe", "start-date=", "end-date=", "operation=",
               "show-operations", "set-date=", "show-date", "set-portafolio=",
               "config", "reset", "plant-id=", "set-plant-id=", "element-id=",
-              "set-element-id=, grouping=", "set-grouping=", "granularity=",
-              "set-granularity=", "aggregation=", "set-aggregation="]
+              "set-element-id=", "grouping=", "set-grouping=", "granularity=",
+              "set-granularity=", "aggregation=", "set-aggregation=", "ids=",
+              "set-ids="]
 
 
 
@@ -75,6 +78,7 @@ Portafolios = ["GPM", "AlsoEnergy"]
 
 
 def main(argv):
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
     toPerform = []
 
@@ -96,6 +100,7 @@ def main(argv):
             grouping = data.get("grouping")
             granularity = data.get("granularity")
             aggregation = data.get("aggregation")
+            ids = data.get("ids")
         except json.JSONDecodeError:
             print("Error: Archivo de configuracion vacio o corrupto.")
             sys.exit(1)
@@ -174,6 +179,15 @@ def main(argv):
         elif opt in ("--aggregation"):
             aggregation = arg
             print(f"Agregacion: {aggregation}")
+        
+        # elegir IDs de fuentes de data
+        elif opt in ("--ids"):
+            try:
+                ids = [int(id) for id in arg.split(',')]
+            except ValueError:
+                print("Error: Los IDs deben ser numeros enteros.")
+                sys.exit(1)
+            print(f"IDs de fuentes de data: {ids}")
 
         # mostrar fechas de inicio y fin guardadas en archivo de configuracion
         elif opt in ("-D", "--show-date"):
@@ -285,6 +299,13 @@ def main(argv):
             set_aggregation(int(arg), config_file_path)
             sys.exit(0)
 
+        # setear IDs de fuentes de data en archivo de configuracion
+        elif opt in ("--set-ids"):
+            print("Seteando IDs de fuentes de data")
+            ids = [int(id) for id in arg.split(',')]
+            set_ids(ids, config_file_path)
+            sys.exit(0)
+
         
 
     print("Paso comprobacion de argumentos y opciones.")
@@ -344,6 +365,12 @@ def main(argv):
             if not authed:
                 authed = check_gpm_login(portafolio, config_file_path)
             datasource(portafolio, config_file_path, plant_id, element_id)
+
+        if op == "DATA":
+            if not authed:
+                authed = check_gpm_login(portafolio, config_file_path)
+            get_data(portafolio, config_file_path, ids, start_date,
+                     end_date, grouping, granularity, aggregation)
 
 if __name__ == "__main__":
     main(sys.argv[1:])

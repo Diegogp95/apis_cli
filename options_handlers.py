@@ -84,9 +84,10 @@ def show_config(config_file_path):
 
             for key, value in data.items():
                 if key == "token":
-                    print(f'{key}:\t{"*" * 10}')
+                    print("{:<20} {:<20}".format(key, "*" * 10))
                 else:
-                    print(f'{key}:\t{value}')
+                    print("{:<20} {:<20}".format(key, str(value).strip('[]')
+                                                 if isinstance(value, list) else value))
     except (FileNotFoundError, json.JSONDecodeError):
         print("No se encontraron datos guardados.")
         sys.exit()
@@ -134,3 +135,6 @@ def set_aggregation(agregation, config_file_path):
         print("Error: La agregacion debe ser un entero entre 0 y 28")
         sys.exit(1)
     update_config({"agregation": agregation}, config_file_path)
+
+def set_ids(ids, config_file_path):
+    update_config({"ids": ids}, config_file_path)
