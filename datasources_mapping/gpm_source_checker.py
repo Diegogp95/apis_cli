@@ -30,7 +30,7 @@ def main(argv):
     for plant in plants:
         plant_id = existing_plants[plant]
         try:
-            response = requests.get(url.format(plant_id), headers=headers)
+            response = requests.get(url.format(plant_id=plant_id), headers=headers)
             response.raise_for_status()
         
         except requests.exceptions.HTTPError as err:
@@ -42,7 +42,7 @@ def main(argv):
         url2 = InfoMap["GPM"]["paths"]["BASE"] + InfoMap["GPM"]["paths"]["ELEMENTS"]
 
         try:
-            response2 = requests.get(url2.format(plant_id), headers=headers)
+            response2 = requests.get(url2.format(plant_id=plant_id), headers=headers)
             response2.raise_for_status()
         
         except requests.exceptions.HTTPError as err:
@@ -60,7 +60,7 @@ f'''============================================================================
         print("{:<20} {:<15} {:<15} {:<30} {:<45} {:<30}\n".format(
             "Field", "ElementId", "DataSourceId", "Local Name", "Remote Name", "Element Name"))
 
-        for table, sub_dict in DataSourceMap[plant].items():
+        for _, sub_dict in DataSourceMap["GPM"][plant].items():
             for field, prop_dict in sub_dict.items():
                 found = False
                 for entry in DATA:
@@ -77,7 +77,7 @@ f'''============================================================================
                         found = True
                         break
                 if not found:
-                    print(f"Entry for {field} \033[91mnot found.")
+                    print(f"Entry for {field} \033[91mnot found\033[0m.")
         print("\n")
                     
 

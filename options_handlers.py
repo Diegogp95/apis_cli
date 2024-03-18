@@ -138,3 +138,15 @@ def set_aggregation(agregation, config_file_path):
 
 def set_ids(ids, config_file_path):
     update_config({"ids": ids}, config_file_path)
+
+def set_field(field, config_file_path):
+    update_config({"field": field}, config_file_path)
+
+def set_function(func, config_file_path):
+    update_config({"function": func}, config_file_path)
+
+def set_bin_size(bin_size, config_file_path):
+    update_config({"bin_size": bin_size}, config_file_path)
+
+def set_tz(tz, config_file_path):
+    update_config({"tz": tz}, config_file_path)

@@ -11,7 +11,7 @@ Opciones:
     -h, --help              Muestra este mensaje
     -n, --portafolio        Nombre del portafolio
     -P, -N, --portafolios   Muestra los portafolios disponibles
-    -a, --pipe              Ejecuta cadena de operaciones hasta obtener data final
+    -a, --pipe              Retorna la data final, sin salida a archivo
     -s, --start_date        Fecha de inicio, uso: YYYY-MM-DD o ISO 8601
     -e, --end_date          Fecha de fin, uso: YYYY-MM-DD o ISO 8601
     -o, --operation         Operacion a realizar, uso: [token, data, hardware, pipe, ...]
@@ -22,6 +22,8 @@ Opciones:
     -c, --config            Muestra el archivo de configuracion
     -r, --reset             Elimina el archivo de configuracion
     -i, --interactive       Modo interactivo, excluyente con otras opciones, en desarrollo
+    -S, --silent            No muestra mensajes de progreso
+    --params                Muestra los parametros disponibles para las operaciones
     --plant-id              ID de la planta para operaciones especificas
     --set-plant-id          Establece el ID de la planta en el archivo de configuracion
     --element-id            ID del elemento para operaciones especificas
@@ -34,13 +36,21 @@ Opciones:
     --set-aggregation       Establece la agregacion de datos en el archivo de configuracion
     --ids                   IDs de las fuentes de data
     --set-ids               Establece los IDs de las fuentes de data en el archivo de configuracion
+    --field                 Campo a seleccionar de un Hardware
+    --set-field             Establece el campo a seleccionar de un Hardware en el archivo de configuracion
+    --function              Funcion a aplicar a un campo
+    --set-function          Establece la funcion a aplicar a un campo en el archivo de configuracion
+    --bin-size              Tamaño de la ventana de tiempo
+    --set-bin-size          Establece el tamaño de la ventana de tiempo en el archivo de configuracion
+    --tz                    Zona horaria en base de datos iana
+    --set-tz                Establece la zona horaria en base de datos iana en el archivo de configuracion
+    --also-query-file       Archivo con query para AlsoEnergy
 
 
-Cualquier operacion (-o -O -a) requiere el nombre del portafolio, debe configurarse previamente con -p o proveerse
+Cualquier operacion (-o -O) requiere el nombre del portafolio, debe configurarse previamente con -p o proveerse
 con -n. Si no se especifica una fecha de inicio y fin, se usaran las fechas guardades en archivo de configuracion,
 si no se encuentra la informacion el programa terminara.
 -d y -D excluyen cualquier otra opcion. -dD es equivalente a -d.
--a y -o pipe son equivalentes.
 -o acepta concatenacion de operaciones separadas por coma, ejemplo: -o token,data,hardware
 Las operaciones de autenticacion guardan el token en archivo de configuracion.
 Si se especifica la operacion autenticacion o se ejecuta pipe, primero se busca un token guardado,
@@ -61,26 +71,62 @@ python api_download.py -h
 
 # Opciones y argumentos
 
-options="ihn:PNas:e:o:Od:Dp:cr"
+options="ihn:PNas:e:o:Od:Dp:crS"
 long_options=["interactive", "help", "portafolio=", "portafolios",
               "pipe", "start-date=", "end-date=", "operation=",
               "show-operations", "set-date=", "show-date", "set-portafolio=",
               "config", "reset", "plant-id=", "set-plant-id=", "element-id=",
               "set-element-id=", "grouping=", "set-grouping=", "granularity=",
               "set-granularity=", "aggregation=", "set-aggregation=", "ids=",
-              "set-ids="]
+              "set-ids=", "field=", "set-field=", "function=", "set-function=",
+              "bin-size=", "set-bin-size=", "tz=", "set-tz=", "also-query-file=",
+              "--silent", "--params"]
 
+
+Portafolios = ["GPM", "AlsoEnergy"]
+
+params_msg = f'''Parametros:
+\t\tComunes:
+\t\t\t\tstart_date: Fecha de inicio, uso: YYYY-MM-DD o ISO 8601
+\t\t\t\tend_date: Fecha de fin, uso: YYYY-MM-DD o ISO 8601
+\t\t\t\tportafolio: Nombre del portafolio {Portafolios}
+\t\t\t\tplant_id: ID de la planta, equivalente a siteId para AlsoEnergy
+\t\t\t\telement_id: ID del elemento, equivalente a hardwareId para AlsoEnergy
+
+\t\tGPM:
+\t\t\t\tgrouping: Formato de agrupamiento de datos, uso: [raw, minute, hour, day, month, year]
+\t\t\t\tgranularity: Formato de granularidad de datos (int). Ver --info-granularity
+\t\t\t\taggregation: Formato de agregacion de datos. uso: 0-28. Ver --info-aggregation
+\t\t\t\tids: IDs de las fuentes de data, uso id1,id2,id3,... Maximo 10 IDs
+
+\t\tAlsoEnergy:
+\t\t\t\tfield: Campo a seleccionar de un Hardware, uso: field
+\t\t\t\tfunction: Funcion a aplicar a un campo, ver --info-function:
+\t\t\t\t\tAvg           - Weighted average over time (i.e. volts)
+\t\t\t\t\tLast          - Last value (i.e. KWH)
+\t\t\t\t\tMin           - Minumum (first KWH reading for the day) NOTE: Only works when all data is &gt; 0
+\t\t\t\t\tMax           - Maximum (i.e. wind speed)               NOTE: Only works when all data is &gt; 0
+\t\t\t\t\tDiff          - Last value - first value (KWH)
+\t\t\t\t\tSum           - Sumation of the data
+\t\t\t\t\tIntegral      - Integral of the data
+\t\t\t\t\tDiffNonZero   - MIN() - MAX(), excluding zeros (see ArchiveDB.LoadJoinData)
+\t\t\t\tbin_size: Tamaño de la ventana de tiempo, BinUnkown, BinRaw, Bin5Min, Bin15Min, BinHour, BinDay, BinMonth, BinYear
+\t\t\t\ttz: Zona horaria en base de datos iana.
+'''
 
 
 # Portafolios y operaciones disponibles
 
-Portafolios = ["GPM", "AlsoEnergy"]
+
 
 
 def main(argv):
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    os.makedirs("output", exist_ok=True)
 
     toPerform = []
+    also_query_file = None
+    mode = 'static'
+    silent = False
 
     # archivo de configuracion
     config_file = "config.json"
@@ -101,6 +147,10 @@ def main(argv):
             granularity = data.get("granularity")
             aggregation = data.get("aggregation")
             ids = data.get("ids")
+            field = data.get("field")
+            func = data.get("function")
+            bin_size = data.get("bin_size")
+            tz = data.get("tz")
         except json.JSONDecodeError:
             print("Error: Archivo de configuracion vacio o corrupto.")
             sys.exit(1)
@@ -112,6 +162,7 @@ def main(argv):
         print(exceptMessage)
         sys.exit(2)
     for opt, arg in opts:
+
         if opt in ("-i", "--interactive"):
             print('''
                   Modo interactivo en desarrollo.
@@ -130,55 +181,82 @@ def main(argv):
                 sys.exit(2)
             portafolio = arg
 
+        elif opt in ("-S", "--silent"):
+            silent = True
+
         # elegir fecha de inicio
         elif opt in ("-s", "--start-date"):
             try:
                 try:
-                    start_date = datetime.strptime(arg, "%Y-%m-%d-%H:%M:%S").isoformat()
+                    start_date = datetime.strptime(arg, "%Y-%m-%dT%H:%M:%S").isoformat()
                 except ValueError:
                     start_date = datetime.fromisoformat(arg).isoformat()
             except ValueError:
-                print("Error: La fecha debe estar en el formato 'YYYY-mm-dd-HH:MM:SS' o en el formato ISO 8601")
+                print("Error: La fecha debe estar en el formato 'YYYY-mm-ddTHH:MM:SS', formato ISO 8601.")
                 sys.exit(1)
-            print(f"Fecha de inicio: {start_date}")
+            if not silent:
+                print(f"Fecha de inicio: {start_date}")
 
         # elegir fecha de fin
         elif opt in ("-e", "--end-date"):
             try:
                 try:
-                    end_date = datetime.strptime(arg, "%Y-%m-%d-%H:%M:%S").isoformat()
+                    end_date = datetime.strptime(arg, "%Y-%m-%dT%H:%M:%S").isoformat()
                 except ValueError:
                     end_date = datetime.fromisoformat(arg).isoformat()
                     print(f"Fecha de fin: {end_date}")
             except ValueError:
-                print("Error: La fecha debe estar en el formato 'YYYY-mm-dd-HH:MM:SS' o en el formato ISO 8601")
+                print("Error: La fecha debe estar en el formato 'YYYY-mm-ddTHH:MM:SS', formato ISO 8601.")
                 sys.exit(1)
-            print(f"Fecha de fin: {end_date}")
+            if not silent:
+                print(f"Fecha de fin: {end_date}")
+            
+        # setear portafolio de trabajo en archivo de configuracion
+        elif opt in ("-p", "--set-portafolio"):
+            print("Seteando portafolio")
+            try:
+                if arg not in Portafolios:
+                    print(f"Portafolio {arg} no encontrado.")
+                    sys.exit(2)
+                set_portafolio(arg, config_file_path)
+            except ValueError:
+                print("Error: Portafolio no encontrado.")
+                sys.exit(1)
+            sys.exit(0)
+
+        elif opt in ("--params"):
+            print(params_msg)
+            sys.exit(0)
 
         # elegir ID de planta
         elif opt in ("--plant-id"):
             plant_id = arg
-            print(f"ID de planta: {plant_id}")
+            if not silent:
+                print(f"ID de planta: {plant_id}")
 
         # elegir ID de elemento
         elif opt in ("--element-id"):
             element_id = arg
-            print(f"ID de elemento: {element_id}")
+            if not silent:
+                print(f"ID de elemento: {element_id}")
         
         # elegir formato de agrupamiento
         elif opt in ("--grouping"):
             grouping = arg
-            print(f"Agrupamiento: {grouping}")
+            if not silent:
+                print(f"Agrupamiento: {grouping}")
 
         # elegir formato de granularidad
         elif opt in ("--granularity"):
             granularity = arg
-            print(f"Granularidad: {granularity}")
+            if not silent:
+                print(f"Granularidad: {granularity}")
 
         # elegir formato de agregacion
         elif opt in ("--aggregation"):
             aggregation = arg
-            print(f"Agregacion: {aggregation}")
+            if not silent:
+                print(f"Agregacion: {aggregation}")
         
         # elegir IDs de fuentes de data
         elif opt in ("--ids"):
@@ -187,7 +265,28 @@ def main(argv):
             except ValueError:
                 print("Error: Los IDs deben ser numeros enteros.")
                 sys.exit(1)
-            print(f"IDs de fuentes de data: {ids}")
+            if not silent:
+                print(f"IDs de fuentes de data: {ids}")
+
+        elif opt in ("--field"):
+            field = arg
+            if not silent:
+                print(f"Campo: {field}")
+
+        elif opt in ("--function"):
+            func = arg
+            if not silent:
+                print(f"Funcion: {func}")
+
+        elif opt in ("--bin-size"):
+            bin_size = arg
+            if not silent:
+                print(f"Tamaño de ventana de tiempo: {bin_size}")
+
+        elif opt in ("--tz"):
+            tz = arg
+            if not silent:
+                print(f"Zona horaria: {tz}")
 
         # mostrar fechas de inicio y fin guardadas en archivo de configuracion
         elif opt in ("-D", "--show-date"):
@@ -203,27 +302,19 @@ def main(argv):
 
         # ejecutar todas las operaciones del portafolio en pipeline
         elif opt in ("-a", "--pipe"):
-            if portafolio == "":
-                print(exceptMessage)
-                sys.exit(2)
-            toPerform.extend(InfoMap[portafolio]["pipeline"]["ops"])
-            print(f"pipeline: {toPerform} para {portafolio}")
-            sys.exit(1)
+            mode = 'pipe'
 
         # operaciones especificas
         elif opt in ("-o", "--operation"):
             if portafolio == "":
                 print(exceptName)
                 sys.exit(2)
-            if arg == "pipe":
-                toPerform.extend(InfoMap[portafolio]["pipeline"]["ops"])
-                print(f"pipeline: {toPerform} para {portafolio}")
-                sys.exit(0)
 
             # arg subtring de operaciones y cada operacion existe en el portafolio
             elif all(op in InfoMap[portafolio]["operations"] for op in arg.split(',')):
                 toPerform.extend(arg.split(','))
-                print(f"operaciones: {toPerform} contenidas en {InfoMap[portafolio]['operations']} para {portafolio}")
+                if not silent:
+                    print(f"operaciones: {toPerform} contenidas en {InfoMap[portafolio]['operations']} para {portafolio}")
             else:
                 print(f"Operacion(es) {arg} no disponible(s) para {portafolio}")
                 sys.exit(2)
@@ -249,66 +340,76 @@ def main(argv):
         elif opt in ("-r", "--reset"):
             reset_config(config_file_path)
             sys.exit(0)
-        
-        # setear portafolio de trabajo en archivo de configuracion
-        elif opt in ("-p", "--set-portafolio"):
-            print("Seteando portafolio")
-            try:
-                if arg not in Portafolios:
-                    print(f"Portafolio {arg} no encontrado.")
-                    sys.exit(2)
-                set_portafolio(arg, config_file_path)
-            except ValueError:
-                print("Error: Portafolio no encontrado.")
-                sys.exit(1)
-            sys.exit(0)
 
         # setear fechas de inicio y fin en archivo de configuracion            
         elif opt in ("-d", "--set-date"):
             print("Seteando fechas")
             set_date(arg, config_file_path)
-            sys.exit(0)
+            # sys.exit(0)
 
         # setear ID de planta en archivo de configuracion
         elif opt in ("--set-plant-id"):
             print("Seteando ID de planta")
             set_plant_id(arg, config_file_path)
-            sys.exit(0)
+            # sys.exit(0)
 
         # setear ID de elemento en archivo de configuracion
         elif opt in ("--set-element-id"):
             print("Seteando ID de elemento")
             set_element_id(arg, config_file_path)
-            sys.exit(0)
+            # sys.exit(0)
 
         # setear formato de agrupamiento en archivo de configuracion
         elif opt in ("--set-grouping"):
             print("Seteando formato de agrupamiento")
             set_grouping(arg, config_file_path)
-            sys.exit(0)
+            # sys.exit(0)
         
         # setear formato de granularidad en archivo de configuracion
         elif opt in ("--set-granularity"):
             print("Seteando formato de granularidad")
             set_granularity(int(arg), grouping, config_file_path)
-            sys.exit(0)
+            # sys.exit(0)
         
         # setear formato de agregacion en archivo de configuracion
         elif opt in ("--set-aggregation"):
             print("Seteando formato de agregacion")
             set_aggregation(int(arg), config_file_path)
-            sys.exit(0)
+            # sys.exit(0)
 
         # setear IDs de fuentes de data en archivo de configuracion
         elif opt in ("--set-ids"):
             print("Seteando IDs de fuentes de data")
             ids = [int(id) for id in arg.split(',')]
             set_ids(ids, config_file_path)
-            sys.exit(0)
+            # sys.exit(0)
 
+        elif opt in ("--set-field"):
+            print("Seteando campos")
+            field = arg
+            set_field(field, config_file_path)
+            # sys.exit(0)
+
+        elif opt in ("--set-function"):
+            print("Seteando funcion")
+            set_function(arg, config_file_path)
+            # sys.exit(0)
         
+        elif opt in ("--set-bin-size"):
+            print("Seteando tamaño de ventana de tiempo")
+            set_bin_size(arg, config_file_path)
+            # sys.exit(0)
+    
+        elif opt in ("--set-tz"):
+            print("Seteando zona horaria")
+            set_tz(arg, config_file_path)
+            # sys.exit(0)
 
-    print("Paso comprobacion de argumentos y opciones.")
+        elif opt in ("--also-query-file"):
+            also_query_file = arg
+            if not silent:
+                print("Archivo de query para AlsoEnergy")
+
     # si llega hasta aca es porque se realizaran operaciones
 
     try:
@@ -325,6 +426,9 @@ def main(argv):
         print(f"Error inesperado: {e}")
         sys.exit(1)
 
+    if len(toPerform) == 0:
+        sys.exit(0)
+
     # ejecutar operaciones
     if portafolio == "":
         print(exceptName)
@@ -332,45 +436,57 @@ def main(argv):
 
     authed = False
 
-    for op in toPerform:
-        if op == "AUTH":
-            token = auth(portafolio, config_file_path)
-            if token is None:
-                print("Error: Autenticacion fallida.")
-                sys.exit(1)
+    if "AUTH" in toPerform:
+        token = auth(portafolio, config_file_path)
+        if token is None:
+            print("Error: Autenticacion fallida.")
+            sys.exit(1)
+        else:
+            authed = True
 
-        if op == "PING":
-            if ping(portafolio, config_file_path):
-                print("Ping exitoso.")
+    if "PING" in toPerform:
+        if ping(portafolio, config_file_path):
+            print("Ping exitoso.")
+            authed = True
+        else:
+            print("Ping fallido.")
+            sys.exit(1)
+
+    if portafolio == "GPM" and not authed:
+        authed = check_gpm_login(portafolio, config_file_path)
+
+    if "PLANTS" in toPerform or "SITES" in toPerform:
+        plants(portafolio, config_file_path)
+
+    if "ELEMENTS" in toPerform or "HARDWARE" in toPerform:
+        elements(portafolio, config_file_path, plant_id)
+
+    if "ALLDATASOURCES" in toPerform:
+        all_datasources(portafolio, config_file_path, plant_id)
+
+    if "DATASOURCE" in toPerform or "COMPONENTS" in toPerform:
+        datasource(portafolio, config_file_path, plant_id, element_id)
+
+    if "DATA" in toPerform:
+        if portafolio == "GPM":
+            if mode == 'pipe':
+                return get_data(portafolio, config_file_path, start_date, end_date,
+                        datasource_ids=ids, grouping=grouping, granularity=granularity,
+                        aggregation=aggregation, mode=mode)
             else:
-                print("Ping fallido.")
-                sys.exit(1)
-
-        if op == "PLANTS":
-            if not authed:
-                authed = check_gpm_login(portafolio, config_file_path)
-            plants(portafolio, config_file_path)
-
-        if op == "ELEMENTS":
-            if not authed:
-                authed = check_gpm_login(portafolio, config_file_path)
-            elements(portafolio, config_file_path, plant_id)
-
-        if op == "ALLDATASOURCES":
-            if not authed:
-                authed = check_gpm_login(portafolio,config_file_path)
-            all_datasources(portafolio, config_file_path, plant_id)
-
-        if op == "DATASOURCE":
-            if not authed:
-                authed = check_gpm_login(portafolio, config_file_path)
-            datasource(portafolio, config_file_path, plant_id, element_id)
-
-        if op == "DATA":
-            if not authed:
-                authed = check_gpm_login(portafolio, config_file_path)
-            get_data(portafolio, config_file_path, ids, start_date,
-                     end_date, grouping, granularity, aggregation)
+                get_data(portafolio, config_file_path, start_date, end_date,
+                        datasource_ids=ids, grouping=grouping, granularity=granularity,
+                        aggregation=aggregation)
+            
+        elif portafolio == "AlsoEnergy":
+            if mode == 'pipe':
+                return get_data(portafolio, config_file_path, start_date, end_date,
+                        site_id=plant_id, also_query_file=also_query_file,
+                        bin_size=bin_size, tz=tz, mode=mode)
+            else:
+                get_data(portafolio, config_file_path, start_date, end_date,
+                    site_id=plant_id, hardware_id=element_id, field=field,
+                    func=func, bin_size=bin_size, tz=tz)
 
 if __name__ == "__main__":
     main(sys.argv[1:])
