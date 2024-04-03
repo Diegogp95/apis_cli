@@ -6,9 +6,17 @@ import os
 def init_config(config_file):
     config = {
         "portafolio": "",
-        "token": "",
+        "gpm_token": "",
+        "alsoenergy_token": "",
         "start_date": "",
         "end_date": "",
+        "plant_id": "",
+        "element_id": "",
+        "grouping": "",
+        "granularity": "",
+        "agregation": "",
+        "ids": "",
+        "function": ""
     }
     try:
         with open(config_file, "w") as json_file:
@@ -83,7 +91,7 @@ def show_config(config_file_path):
             print("\n\tConfiguracion actual:\n\n")
 
             for key, value in data.items():
-                if key == "token":
+                if "token" in key:
                     print("{:<20} {:<20}".format(key, "*" * 10))
                 else:
                     print("{:<20} {:<20}".format(key, str(value).strip('[]')

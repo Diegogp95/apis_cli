@@ -11,14 +11,20 @@ load_dotenv()
 
 ####### Funciones auxiliares
 
-def save_token(token, config_file_path):
+def save_token(portafolio, token, config_file_path):
     # Cargar datos existentes desde el archivo (o un diccionario vacío si el archivo está vacío o no existe)
     try:
         with open(config_file_path, 'r') as config_file:
             data = json.load(config_file)
     except (FileNotFoundError, json.JSONDecodeError):
         data = {}
-    data["token"] = token
+    if portafolio == "GPM":
+        data["gpm_token"] = token
+    elif portafolio == "AlsoEnergy":
+        data["alsoenergy_token"] = token
+    else:
+        print("Error: Portafolio no reconocido.")
+        sys.exit(1)
 
     # Escribir el diccionario actualizado
     with open(config_file_path, 'w') as config_file:
@@ -72,10 +78,19 @@ def write_data_to_file(file_head, data, relevant_items, mode, prefix=''):
 
     if mode == 'static': print(f"Datos de elementos guardados en {output_path}")
 
-def load_token(config_file_path):
+def load_token(portafolio, config_file_path):
     with open(config_file_path, "r") as config_file:
         data = json.load(config_file)
-    return data["token"]
+    try:
+        if portafolio == "GPM":
+            return data["gpm_token"]
+        elif portafolio == "AlsoEnergy":
+            return data["alsoenergy_token"]
+        else:
+            print("Error: Portafolio no reconocido.")
+            sys.exit(1)
+    except KeyError:
+        return ""
 
 
 ####### Funciones de operaciones
@@ -96,7 +111,7 @@ def auth(portafolio, config_file_path):
             response = requests.post(url, headers=InfoMap[portafolio]['headers-auth'], data=data)
             response.raise_for_status()
             token = response.json()["access_token"]
-        save_token(token, config_file_path)
+        save_token(portafolio, token, config_file_path)
         if portafolio == "GPM":
             print(f"Expiracion: {expiration}")
         return token
@@ -111,7 +126,7 @@ def all_datasources(portafolio, config_file_path, plant_id, mode='static'):
     url = InfoMap[portafolio]["paths"]["BASE"] + InfoMap[portafolio]["paths"]["ALLDATASOURCES"].format(
         plant_id=plant_id)
     headers = InfoMap[portafolio]["headers"]
-    token = load_token(config_file_path)
+    token = load_token(portafolio, config_file_path)
     headers["Authorization"] = f"Bearer {token}"
     try:
         response = requests.get(url, headers=headers)
@@ -133,7 +148,7 @@ def datasource(portafolio, config_file_path, plant_id, element_id, mode='static'
         url = InfoMap[portafolio]["paths"]["BASE"] + InfoMap[portafolio]["paths"]["COMPONENTS"].format(
             hardwareId=element_id)
     headers = InfoMap[portafolio]["headers"]
-    token = load_token(config_file_path)
+    token = load_token(portafolio, config_file_path)
     headers["Authorization"] = f"Bearer {token}"
     try:
         response = requests.get(url, headers=headers)
@@ -161,7 +176,7 @@ def ping(portafolio, config_file_path):
         return
     url = InfoMap[portafolio]["paths"]["BASE"] + InfoMap[portafolio]["paths"]["PING"]
     headers = InfoMap[portafolio]["headers"]
-    token = load_token(config_file_path)
+    token = load_token(portafolio, config_file_path)
     headers["Authorization"] = f"Bearer {token}"
 
     try:
@@ -178,7 +193,7 @@ def plants(portafolio, config_file_path, alert_count=False, mode='static'):
     elif portafolio == "AlsoEnergy":
         url = InfoMap[portafolio]["paths"]["BASE"] + InfoMap[portafolio]["paths"]["SITES"]
     headers = InfoMap[portafolio]["headers"]
-    token = load_token(config_file_path)
+    token = load_token(portafolio, config_file_path)
     headers["Authorization"] = f"Bearer {token}"
     if alert_count and portafolio == "AlsoEnergy":
         url = url + "?withAlertCounts=true"
@@ -211,7 +226,7 @@ def elements(portafolio, config_file_path, plant_id, mode='static', includeArchi
         url = InfoMap[portafolio]["paths"]["BASE"] + InfoMap[portafolio]["paths"]["HARDWARE"].format(
             siteId=plant_id)
     headers = InfoMap[portafolio]["headers"]
-    token = load_token(config_file_path)
+    token = load_token(portafolio, config_file_path)
     headers["Authorization"] = f"Bearer {token}"
     try:
         if portafolio == "AlsoEnergy":
@@ -253,20 +268,14 @@ def elements(portafolio, config_file_path, plant_id, mode='static', includeArchi
 def get_data(portafolio, config_file_path, start_date, end_date, datasource_ids=None,
             site_id=None, hardware_id=None, field=None, grouping="minutes",
             granularity=15, aggregation=1, bin_size="Bin15min", tz=None, func='Avg',
-            gpm_query_file=None, also_query_file=None, mode='static'):
+            also_query_file=None, mode='static'):
     url = InfoMap[portafolio]["paths"]["BASE"] + InfoMap[portafolio]["paths"]["DATA"]
     headers = InfoMap[portafolio]["headers"]
-    token = load_token(config_file_path)
+    token = load_token(portafolio, config_file_path)
     headers["Authorization"] = f"Bearer {token}"
 
     if portafolio == "GPM":
-        if gpm_query_file:
-            with open(gpm_query_file, 'r') as query_file:
-                query = json.load(query_file)
-            datasource_ids = query["dataSourceIds"]
-
-        else:
-            datasource_ids = ",".join(map(str, datasource_ids))
+        datasource_ids = ",".join(map(str, datasource_ids))
 
         params = {
             "dataSourceIds": datasource_ids,
@@ -325,6 +334,7 @@ def get_data(portafolio, config_file_path, start_date, end_date, datasource_ids=
     try:
         DATA = response.json()
     except json.JSONDecodeError as err:
+        print(response.status_code)
         raise err
 
     if mode == 'pipe': return DATA

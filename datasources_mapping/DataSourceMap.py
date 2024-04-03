@@ -308,6 +308,11 @@ DataSourceMap = {
                     "DataSourceName": "Tilted Irradiance 2",
                     "ElementId": 10426
                 },
+                "ct01_pyr1_h": {
+                    "DataSourceId": 128321,
+                    "DataSourceName": "Horizontal Irradiance 1",
+                    "ElementId": 10426
+                },
                 "ct01_clean_cell1": {
                     "DataSourceId": 128319,
                     "DataSourceName": "Tilted Clean Cell 1",
@@ -424,6 +429,11 @@ DataSourceMap = {
                     "DataSourceName": "Horizontal Irradiance 1",
                     "ElementId": 6847
                 },
+                "ct01_globalirr1": {
+                    "DataSourceId": 82453,
+                    "DataSourceName": "Global Irradiance 2",
+                    "ElementId": 6868
+                },
                 "ct01_clean_cell1": {
                     "DataSourceId": 81532,
                     "DataSourceName": "Tilted Clean Cell 1",
@@ -539,6 +549,26 @@ DataSourceMap = {
                     "DataSourceId": 72848,
                     "DataSourceName": "Horizontal Irradiance 1",
                     "ElementId": 6086
+                },
+                "ct01_globalirr1": {
+                    "DataSourceId": 72906,
+                    "DataSourceName": "Global Irradiance 1",
+                    "ElementId": 6088
+                },
+                "ct01_globalirr2": {
+                    "DataSourceId": 72907,
+                    "DataSourceName": "Global Irradiance 2",
+                    "ElementId": 6088
+                },
+                "ct01_globalirr3": {
+                    "DataSourceId": 72908,
+                    "DataSourceName": "Global Irradiance 3",
+                    "ElementId": 6088
+                },
+                "ct01_globalirr4": {
+                    "DataSourceId": 72909,
+                    "DataSourceName": "Global Irradiance 4",
+                    "ElementId": 6088
                 },
                 "ct01_clean_cell1": {
                     "DataSourceId": 72829,
@@ -746,12 +776,12 @@ DataSourceMap = {
                     "DataSourceName": "Panel Temperature 2",
                     "ElementId": 6978
                 },
-                "ct02_pyra1_t": {
+                "ct02_pyr1_t": {
                     "DataSourceId": 95093,
                     "DataSourceName": "Tilted Irradiance 1",
                     "ElementId": 7247
                 },
-                "ct02_pyra2_t": {
+                "ct02_pyr2_t": {
                     "DataSourceId": 95094,
                     "DataSourceName": "Tilted Irradiance 2",
                     "ElementId": 7247

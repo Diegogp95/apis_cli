@@ -6,7 +6,8 @@ from options_handlers import *
 from InfoMap import InfoMap
 
 
-helpmessage = '''python api_download.py -n <portafolio> [-a -s <start_date> -e <end_date>]
+helpmessage = '''python api_download.py [opciones]
+
 Opciones:
     -h, --help              Muestra este mensaje
     -n, --portafolio        Nombre del portafolio
@@ -51,7 +52,7 @@ Cualquier operacion (-o -O) requiere el nombre del portafolio, debe configurarse
 con -n. Si no se especifica una fecha de inicio y fin, se usaran las fechas guardades en archivo de configuracion,
 si no se encuentra la informacion el programa terminara.
 -d y -D excluyen cualquier otra opcion. -dD es equivalente a -d.
--o acepta concatenacion de operaciones separadas por coma, ejemplo: -o token,data,hardware
+-o acepta concatenacion de operaciones separadas por coma, ejemplo: -o OP1,OP2,OP3
 Las operaciones de autenticacion guardan el token en archivo de configuracion.
 Si se especifica la operacion autenticacion o se ejecuta pipe, primero se busca un token guardado,
 si no se encuentra se ejecuta la operacion de autenticacion, si el token guardado falla termina el programa,
