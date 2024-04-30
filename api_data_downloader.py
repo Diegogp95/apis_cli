@@ -4,7 +4,10 @@ from datasources_mapping.DataSourceMap import DataSourceMap
 from InfoMap import InfoMap
 import api_explorer as api
 from datetime import datetime, timedelta
+from requests import exceptions as req_exceptions
+import pytz
 
+from tqdm import tqdm
 
 
 def validate_date(date_str):
@@ -38,6 +41,10 @@ def main(argv):
 
     plants_arg = "all"
 
+    ## mover la deficion de la timezone al mapa de plantas luego
+    tz = "America/Santiago"
+    # tz = None
+
     if not any(option in ("-h", "--help") for option, value in options):
         if not any(option in ("-d", "--day") for option, value in options):
             if len(args) < 3:
@@ -62,6 +69,8 @@ def main(argv):
     portafolio = args[0]
     output_folder_path = os.path.join("data_output/", portafolio)
 
+
+
     if not os.path.exists(output_folder_path):   
         os.makedirs(output_folder_path) 
 
@@ -78,23 +87,32 @@ def main(argv):
         also_query_file_path = os.path.join(output_folder_path, "AlsoEnergyQuery.json")
         api.main(["-S", "--portafolio", portafolio, "-o", "AUTH"])
 
+    if tz:
+        timezone = pytz.timezone(tz)
+        ## GPM guarda todo en UTC, aun cuando las mediciones parecen estar en America/Santiago
+        ## por lo que descartamos utilizar la timezone en este caso
+        ## AlsoEnergy guarda todo en America/Santiago, por lo que la timezone es necesaria
+        ## De todas formas en este punto se decide trabajar con datetimes naives en todo el proyecto django
+        # if portafolio == "GPM":
+        #     start_date = timezone.localize(datetime.fromisoformat(start_date)).isoformat()
+        #     end_date = timezone.localize(datetime.fromisoformat(end_date)).isoformat()
+
     for plant in plants.keys():
         plant_id = plants[plant]
+        print(f"\tPlanta: {plant}")
         for table_name, field_dict in DataSourceMap[portafolio][plant].items():
             output_path = os.path.join(
                 output_folder_path,
-                plant + "_" + table_name + "_" + start_date + "_" + end_date + ".json")
+                plant + "-" + table_name + "_date=" + start_date + "_" + end_date + ".json")
             if portafolio == "GPM":
                 fields = [field for field in field_dict if field != "act_energy"]
             elif portafolio == "AlsoEnergy":
                 fields = [field for field in field_dict]
             table_data = []
 
-            print(f"Descargando datos de {portafolio} para planta {plant} y tabla {table_name}")
-
             output_data = {}
 
-            for i in range(0, len(fields), 10):
+            for i in tqdm(range(0, len(fields), 10), desc="{:40}".format(f"Descargando datos de {table_name}")):
                 queryset = fields[i:i+10]
 
                 if portafolio == "GPM":
@@ -108,8 +126,8 @@ def main(argv):
                     try:
                         returned_data = api.main(args)
                         table_data.extend(returned_data)
-                    except json.JSONDecodeError as e:
-                        print(f"\t\tPlanta: {plant} - Error en la descarga de datos de GPM para tabla {table_name} y campos {queryset}")
+                    except (json.JSONDecodeError, req_exceptions.HTTPError, req_exceptions.RequestException) as e:
+                        print(f"\nPlanta: {plant} - Error en la descarga de datos de GPM para tabla {table_name} y campos {queryset}\n")
                         continue
                     
                     
@@ -129,7 +147,7 @@ def main(argv):
                     args = ["-S", "--portafolio", portafolio, "--plant-id", str(plant_id),
                             "--start-date", start_date, "--end-date", end_date,
                             "--also-query-file", also_query_file_path, "--pipe",
-                            "--bin-size", "Bin15Min", "-o", "DATA"]
+                            "--bin-size", "Bin15Min", "-o", "DATA", "--tz", tz]
 
                     try:
                         returned_data = api.main(args)
@@ -146,9 +164,12 @@ def main(argv):
                                     output_data[item["timestamp"]] = {"timestamp": item["timestamp"]}
                                 output_data[item["timestamp"]][field] = value
 
-                    except json.JSONDecodeError as e:
-                        print(f"\t\tPlanta: {plant} - Error en la descarga de datos de AlsoEnergy para tabla {table_name} y campos {queryset}")
+                    except (json.JSONDecodeError, req_exceptions.HTTPError, req_exceptions.RequestException) as e:
+                        print(f"Planta: {plant} - Error en la descarga de datos de AlsoEnergy para tabla {table_name} y campos {queryset}")
                         continue
+            # with open('asd.json', 'w') as f:
+            #     json.dump(table_data, f, indent=4)
+
 
 
             if table_name == "Generation" and portafolio == "GPM":
@@ -159,8 +180,8 @@ def main(argv):
                         "--aggregation", str(28)]
                 try:
                     returned_energy_data = api.main(args)
-                except json.JSONDecodeError as e:
-                    print(f"\t\tPlanta: {plant} - Error en la descarga de datos de GPM para tabla {table_name} y campo act_energy")
+                except (json.JSONDecodeError, req_exceptions.HTTPError, req_exceptions.RequestException) as e:
+                    print(f"Planta: {plant} - Error en la descarga de datos de GPM para tabla {table_name} y campo act_energy")
                     returned_energy_data = None
             
             if portafolio == "GPM":
@@ -170,14 +191,25 @@ def main(argv):
                             if not returned_energy_data:
                                 returned_energy_data = {"Date": entry["Date"], "Value": None}
                         timestamp_data = [matched for matched in table_data if matched["Date"] == entry["Date"]]
-                        output_data[entry["Date"]] = {"timestamp": entry["Date"]}
+
+                        if tz:
+                            try:
+                                timestamp = timezone.localize(datetime.fromisoformat(entry["Date"]))
+                            except ValueError:
+                                timestamp = datetime.fromisoformat(entry["Date"]).replace(tzinfo=None)
+                                timestamp = timezone.localize(timestamp)
+                            output_data[entry["Date"]] = {"timestamp": timestamp.isoformat()}
+                        else:
+                            output_data[entry["Date"]] = {"timestamp": entry["Date"]}
                         output_data[entry["Date"]].update({
                             field: next((entryy["Value"] for entryy in timestamp_data if entryy["DataSourceId"] == field_dict[field]["DataSourceId"]), None) for field in fields
                         })
-                        if table_name == "Generation":
-                            output_data[entry["Date"]]["act_energy"] = next((entryy["Value"] for entryy in returned_energy_data if entryy["Date"] == entry["Date"]), None)
-
-            output_data = list(output_data.values())
+                        try:
+                            if table_name == "Generation":
+                                output_data[entry["Date"]]["act_energy"] = next((entryy["Value"] for entryy in returned_energy_data if entryy["Date"] == entry["Date"]), None)
+                        except TypeError:
+                            print(returned_energy_data)
+            output_data = sorted(list(output_data.values()), key=lambda x: x["timestamp"])
 
             with open(output_path, "w") as file:
                 json.dump(output_data, file, indent=4)

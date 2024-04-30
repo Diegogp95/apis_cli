@@ -1,3 +1,6 @@
+## añadir ct a campos de inversores
+## faltantes: Quillay, Lirio, Los lagos, cabras, guanaco, margarita, escorial, gabardo, rexner, monte, plomo, idahue, nazarino, guanaco 2, duqueco
+
 DataSourceMap = {
     "GPM": {
         "Mandinga": {
@@ -54,227 +57,227 @@ DataSourceMap = {
                 }
             },
             "Generation": {
-                "inv1" : {
+                "ct01_inv01" : {
                     "DataSourceId": 142264,
                     "DataSourceName": "Inversor CT1.01",
                     "ElementId": 11302
                 },
-                "inv2" : {
+                "ct01_inv02" : {
                     "DataSourceId": 142349,
                     "DataSourceName": "Inversor CT1.02",
                     "ElementId": 11303
                 },
-                "inv3" : {
+                "ct01_inv03" : {
                     "DataSourceId": 142434,
                     "DataSourceName": "Inversor CT1.03",
                     "ElementId": 11304
                 },
-                "inv4" : {
+                "ct01_inv04" : {
                     "DataSourceId": 142519,
                     "DataSourceName": "Inversor CT1.04",
                     "ElementId": 11305
                 },
-                "inv5" : {
+                "ct01_inv05" : {
                     "DataSourceId": 142604,
                     "DataSourceName": "Inversor CT1.05",
                     "ElementId": 11306
                 },
-                "inv6" : {
+                "ct01_inv06" : {
                     "DataSourceId": 142689,
                     "DataSourceName": "Inversor CT1.06",
                     "ElementId": 11307
                 },
-                "inv7" : {
+                "ct01_inv07" : {
                     "DataSourceId": 142774,
                     "DataSourceName": "Inversor CT1.07",
                     "ElementId": 11308
                 },
-                "inv8" : {
+                "ct01_inv08" : {
                     "DataSourceId": 142859,
                     "DataSourceName": "Inversor CT1.08",
                     "ElementId": 11309
                 },
-                "inv9" : {
+                "ct01_inv09" : {
                     "DataSourceId": 142944,
                     "DataSourceName": "Inversor CT1.09",
                     "ElementId": 11310
                 },
-                "inv10" : {
+                "ct01_inv10" : {
                     "DataSourceId": 143029,
                     "DataSourceName": "Inversor CT1.10",
                     "ElementId": 11311
                 },
-                "inv11" : {
+                "ct01_inv11" : {
                     "DataSourceId": 143114,
                     "DataSourceName": "Inversor CT1.11",
                     "ElementId": 11312
                 },
-                "inv12" : {
+                "ct01_inv12" : {
                     "DataSourceId": 143199,
                     "DataSourceName": "Inversor CT1.12",
                     "ElementId": 11313
                 },
-                "inv13" : {
+                "ct01_inv13" : {
                     "DataSourceId": 143284,
                     "DataSourceName": "Inversor CT1.13",
                     "ElementId": 11314
                 },
-                "inv14" : {
+                "ct01_inv14" : {
                     "DataSourceId": 143369,
                     "DataSourceName": "Inversor CT1.14",
                     "ElementId": 11315
                 },
-                "inv15" : {
+                "ct01_inv15" : {
                     "DataSourceId": 143454,
                     "DataSourceName": "Inversor CT1.15",
                     "ElementId": 11316
                 },
-                "inv16" : {
+                "ct02_inv01" : {
                     "DataSourceId": 145016,
                     "DataSourceName": "Inversor CT2.01",
                     "ElementId": 11418
                 },
-                "inv17" : {
+                "ct02_inv02" : {
                     "DataSourceId": 145101,
                     "DataSourceName": "Inversor CT2.02",
                     "ElementId": 11419
                 },
-                "inv18" : {
+                "ct02_inv03" : {
                     "DataSourceId": 145186,
                     "DataSourceName": "Inversor CT2.03",
                     "ElementId": 11420
                 },
-                "inv19" : {
+                "ct02_inv04" : {
                     "DataSourceId": 145271,
                     "DataSourceName": "Inversor CT2.04",
                     "ElementId": 11421
                 },
-                "inv20" : {
+                "ct02_inv05" : {
                     "DataSourceId": 145356,
                     "DataSourceName": "Inversor CT2.05",
                     "ElementId": 11422
                 },
-                "inv21" : {
+                "ct02_inv06" : {
                     "DataSourceId": 145441,
                     "DataSourceName": "Inversor CT2.06",
                     "ElementId": 11423
                 },
-                "inv22" : {
+                "ct02_inv07" : {
                     "DataSourceId": 145526,
                     "DataSourceName": "Inversor CT2.07",
                     "ElementId": 11424
                 },
-                "inv23" : {
+                "ct02_inv08" : {
                     "DataSourceId": 145611,
                     "DataSourceName": "Inversor CT2.08",
                     "ElementId": 11425
                 },
-                "inv24" : {
+                "ct02_inv09" : {
                     "DataSourceId": 145696,
                     "DataSourceName": "Inversor CT2.09",
                     "ElementId": 11426
                 },
-                "inv25" : {
+                "ct02_inv10" : {
                     "DataSourceId": 145781,
                     "DataSourceName": "Inversor CT2.10",
                     "ElementId": 11427
                 },
-                "inv26" : {
+                "ct02_inv11" : {
                     "DataSourceId": 145866,
                     "DataSourceName": "Inversor CT2.11",
                     "ElementId": 11428
                 },
-                "inv27" : {
+                "ct02_inv12" : {
                     "DataSourceId": 145951,
                     "DataSourceName": "Inversor CT2.12",
                     "ElementId": 11429
                 },
-                "inv28" : {
+                "ct02_inv13" : {
                     "DataSourceId": 146036,
                     "DataSourceName": "Inversor CT2.13",
                     "ElementId": 11430
                 },
-                "inv29" : {
+                "ct02_inv14" : {
                     "DataSourceId": 146121,
                     "DataSourceName": "Inversor CT2.14",
                     "ElementId": 11431
                 },
-                "inv30" : {
+                "ct02_inv15" : {
                     "DataSourceId": 146206,
                     "DataSourceName": "Inversor CT2.15",
                     "ElementId": 11432
                 },
-                "inv31" : {
+                "ct03_inv01" : {
                     "DataSourceId": 146680,
                     "DataSourceName": "Inversor CT3.01",
                     "ElementId": 11442
                 },
-                "inv32" : {
+                "ct03_inv02" : {
                     "DataSourceId": 146765,
                     "DataSourceName": "Inversor CT3.02",
                     "ElementId": 11443
                 },
-                "inv33" : {
+                "ct03_inv03" : {
                     "DataSourceId": 146850,
                     "DataSourceName": "Inversor CT3.03",
                     "ElementId": 11444
                 },
-                "inv34" : {
+                "ct03_inv04" : {
                     "DataSourceId": 146935,
                     "DataSourceName": "Inversor CT3.04",
                     "ElementId": 11445
                 },
-                "inv35" : {
+                "ct03_inv05" : {
                     "DataSourceId": 147020,
                     "DataSourceName": "Inversor CT3.05",
                     "ElementId": 11446
                 },
-                "inv36" : {
+                "ct03_inv06" : {
                     "DataSourceId": 147105,
                     "DataSourceName": "Inversor CT3.06",
                     "ElementId": 11447
                 },
-                "inv37" : {
+                "ct03_inv07" : {
                     "DataSourceId": 147190,
                     "DataSourceName": "Inversor CT3.07",
                     "ElementId": 11448
                 },
-                "inv38" : {
+                "ct03_inv08" : {
                     "DataSourceId": 147275,
                     "DataSourceName": "Inversor CT3.08",
                     "ElementId": 11449
                 },
-                "inv39" : {
+                "ct03_inv09" : {
                     "DataSourceId": 147360,
                     "DataSourceName": "Inversor CT3.09",
                     "ElementId": 11450
                 },
-                "inv40" : {
+                "ct03_inv10" : {
                     "DataSourceId": 147445,
                     "DataSourceName": "Inversor CT3.10",
                     "ElementId": 11451
                 },
-                "inv41" : {
+                "ct03_inv11" : {
                     "DataSourceId": 147530,
                     "DataSourceName": "Inversor CT3.11",
                     "ElementId": 11452
                 },
-                "inv42" : {
+                "ct03_inv12" : {
                     "DataSourceId": 147615,
                     "DataSourceName": "Inversor CT3.12",
                     "ElementId": 11453
                 },
-                "inv43" :{ 
+                "ct03_inv13" :{ 
                     "DataSourceId": 147700,
                     "DataSourceName": "Inversor CT3.13",
                     "ElementId": 11454
                 },
-                "inv44" : {
+                "ct03_inv14" : {
                     "DataSourceId": 147785,
                     "DataSourceName": "Inversor CT3.14",
                     "ElementId": 11455
                 },
-                "inv45" : {
+                "ct03_inv15" : {
                     "DataSourceId": 147870,
                     "DataSourceName": "Inversor CT3.15",
                     "ElementId": 11456
@@ -340,57 +343,57 @@ DataSourceMap = {
                 }
             },
             "Generation": {
-                "inv1": {
+                "ct01_inv01": {
                     "DataSourceId": 128363,
                     "DataSourceName": "Inversor CT1.01",
                     "ElementId": 10428
                 },
-                "inv2": {
+                "ct01_inv02": {
                     "DataSourceId": 128419,
                     "DataSourceName": "Inversor CT1.02",
                     "ElementId": 10429
                 },
-                "inv3": {
+                "ct01_inv03": {
                     "DataSourceId": 128475,
                     "DataSourceName": "Inversor CT1.03",
                     "ElementId": 10430
                 },
-                "inv4": {
+                "ct01_inv04": {
                     "DataSourceId": 128531,
                     "DataSourceName": "Inversor CT1.04",
                     "ElementId": 10431
                 },
-                "inv5": {
+                "ct01_inv05": {
                     "DataSourceId": 128587,
                     "DataSourceName": "Inversor CT1.05",
                     "ElementId": 10432
                 },
-                "inv6": {
+                "ct01_inv06": {
                     "DataSourceId": 128643,
                     "DataSourceName": "Inversor CT1.06",
                     "ElementId": 10433
                 },
-                "inv7": {
+                "ct01_inv07": {
                     "DataSourceId": 128699,
                     "DataSourceName": "Inversor CT1.07",
                     "ElementId": 10434
                 },
-                "inv8": {
+                "ct01_inv08": {
                     "DataSourceId": 128755,
                     "DataSourceName": "Inversor CT1.08",
                     "ElementId": 10435
                 },
-                "inv9": {
+                "ct01_inv09": {
                     "DataSourceId": 128811,
                     "DataSourceName": "Inversor CT1.09",
                     "ElementId": 10436
                 },
-                "inv10": {
+                "ct01_inv10": {
                     "DataSourceId": 128867,
                     "DataSourceName": "Inversor CT1.10",
                     "ElementId": 10437
                 },
-                "inv11": {
+                "ct01_inv11": {
                     "DataSourceId": 128923,
                     "DataSourceName": "Inversor CT1.11",
                     "ElementId": 10438
@@ -461,57 +464,57 @@ DataSourceMap = {
                 }
             },
             "Generation": {
-                "inv1": {
+                "ct01_inv01": {
                     "DataSourceId": 81543,
                     "DataSourceName": "Inversor CT1.01",
                     "ElementId": 6848,
                 },
-                "inv2": {
+                "ct01_inv02": {
                     "DataSourceId": 81581,
                     "DataSourceName": "Inversor CT1.02",
                     "ElementId": 6849,
                 },
-                "inv3": {
+                "ct01_inv03": {
                     "DataSourceId": 81619,
                     "DataSourceName": "Inversor CT1.03",
                     "ElementId": 6850,
                 },
-                "inv4": {
+                "ct01_inv04": {
                     "DataSourceId": 81657,
                     "DataSourceName": "Inversor CT1.04",
                     "ElementId": 6851,
                 },
-                "inv5": {
+                "ct01_inv05": {
                     "DataSourceId": 81695,
                     "DataSourceName": "Inversor CT1.05",
                     "ElementId": 6852,
                 },
-                "inv6": {
+                "ct01_inv06": {
                     "DataSourceId": 81733,
                     "DataSourceName": "Inversor CT1.06",
                     "ElementId": 6853,
                 },
-                "inv7": {
+                "ct01_inv07": {
                     "DataSourceId": 81771,
                     "DataSourceName": "Inversor CT1.07",
                     "ElementId": 6854,
                 },
-                "inv8": {
+                "ct01_inv08": {
                     "DataSourceId": 81809,
                     "DataSourceName": "Inversor CT1.08",
                     "ElementId": 6855,
                 },
-                "inv9": {
+                "ct01_inv09": {
                     "DataSourceId": 81847,
                     "DataSourceName": "Inversor CT1.09",
                     "ElementId": 6856,
                 },
-                "inv10": {
+                "ct01_inv10": {
                     "DataSourceId": 81885,
                     "DataSourceName": "Inversor CT1.10",
                     "ElementId": 6857,
                 },
-                "inv11": {
+                "ct01_inv11": {
                     "DataSourceId": 81923,
                     "DataSourceName": "Inversor CT1.11",
                     "ElementId": 6858,
@@ -818,272 +821,272 @@ DataSourceMap = {
                 }
             },
             "Generation": {
-                "inv1": {
+                "ct01_inv01": {
                     "DataSourceName": "Inversor CT1.01",
                     "ElementId": 6993,
                     "DataSourceId": 86235
                 },
-                "inv2": {
+                "ct01_inv02": {
                     "DataSourceName": "Inversor CT1.02",
                     "ElementId": 6987,
                     "DataSourceId": 85779
                 },
-                "inv3": {
+                "ct01_inv03": {
                     "DataSourceName": "Inversor CT1.03",
                     "ElementId": 6984,
                     "DataSourceId": 85551
                 },
-                "inv4": {
+                "ct01_inv04": {
                     "DataSourceName": "Inversor CT1.04",
                     "ElementId": 6986,
                     "DataSourceId": 85703
                 },
-                "inv5": {
+                "ct01_inv05": {
                     "DataSourceName": "Inversor CT1.05",
                     "ElementId": 6994,
                     "DataSourceId": 86311
                 },
-                "inv6": {
+                "ct01_inv06": {
                     "DataSourceName": "Inversor CT1.06",
                     "ElementId": 6995,
                     "DataSourceId": 86387
                 },
-                "inv7": {
+                "ct01_inv07": {
                     "DataSourceName": "Inversor CT1.07",
                     "ElementId": 6991,
                     "DataSourceId": 86083
                 },
-                "inv8": {
+                "ct01_inv08": {
                     "DataSourceName": "Inversor CT1.08",
                     "ElementId": 6996,
                     "DataSourceId": 86463
                 },
-                "inv9": {
+                "ct01_inv09": {
                     "DataSourceName": "Inversor CT1.09",
                     "ElementId": 6983,
                     "DataSourceId": 85475
                 },
-                "inv10": {
+                "ct01_inv10": {
                     "DataSourceName": "Inversor CT1.10",
                     "ElementId": 6985,
                     "DataSourceId": 85627
                 },
-                "inv11": {
+                "ct01_inv11": {
                     "DataSourceName": "Inversor CT1.11",
                     "ElementId": 6988,
                     "DataSourceId": 85855
                 },
-                "inv12": {
+                "ct01_inv12": {
                     "DataSourceName": "Inversor CT1.12",
                     "ElementId": 6992,
                     "DataSourceId": 86159
                 },
-                "inv13": {
+                "ct01_inv13": {
                     "DataSourceName": "Inversor CT1.13",
                     "ElementId": 6990,
                     "DataSourceId": 86007
                 },
-                "inv14": {
+                "ct01_inv14": {
                     "DataSourceName": "Inversor CT1.14",
                     "ElementId": 6989,
                     "DataSourceId": 85931
                 },
-                "inv15": {
+                "ct01_inv15": {
                     "DataSourceName": "Inversor CT1.15",
                     "ElementId": 6997,
                     "DataSourceId": 86539
                 },
-                "inv16": {
+                "ct01_inv16": {
                     "DataSourceName": "Inversor CT1.16",
                     "ElementId": 7490,
                     "DataSourceId": 99557
                 },
-                "inv17": {
+                "ct01_inv17": {
                     "DataSourceName": "Inversor CT1.17",
                     "ElementId": 7491,
                     "DataSourceId": 99635
                 },
-                "inv18": {
+                "ct01_inv18": {
                     "DataSourceName": "Inversor CT1.18",
                     "ElementId": 7492,
                     "DataSourceId": 99713
                 },
-                "inv19": {
+                "ct02_inv01": {
                     "DataSourceName": "Inversor CT2.01",
                     "ElementId": 7107,
                     "DataSourceId": 89670
                 },
-                "inv20": {
+                "ct02_inv02": {
                     "DataSourceName": "Inversor CT2.02",
                     "ElementId": 7109,
                     "DataSourceId": 89822
                 },
-                "inv21": {
+                "ct02_inv03": {
                     "DataSourceName": "Inversor CT2.03",
                     "ElementId": 7110,
                     "DataSourceId": 89898
                 },
-                "inv22": {
+                "ct02_inv04": {
                     "DataSourceName": "Inversor CT2.04",
                     "ElementId": 7108,
                     "DataSourceId": 89746
                 },
-                "inv23": {
+                "ct02_inv05": {
                     "DataSourceName": "Inversor CT2.05",
                     "ElementId": 7115,
                     "DataSourceId": 90278
                 },
-                "inv24": {
+                "ct02_inv06": {
                     "DataSourceName": "Inversor CT2.06",
                     "ElementId": 7112,
                     "DataSourceId": 90050
                 },
-                "inv25": {
+                "ct02_inv07": {
                     "DataSourceName": "Inversor CT2.07",
                     "ElementId": 7118,
                     "DataSourceId": 90506
                 },
-                "inv26": {
+                "ct02_inv08": {
                     "DataSourceName": "Inversor CT2.08",
                     "ElementId": 7114,
                     "DataSourceId": 90202
                 },
-                "inv27": {
+                "ct02_inv09": {
                     "DataSourceName": "Inversor CT2.09",
                     "ElementId": 7119,
                     "DataSourceId": 90582
                 },
-                "inv28": {
+                "ct02_inv10": {
                     "DataSourceName": "Inversor CT2.10",
                     "ElementId": 7113,
                     "DataSourceId": 90126
                 },
-                "inv29": {
+                "ct02_inv11": {
                     "DataSourceName": "Inversor CT2.11",
                     "ElementId": 7106,
                     "DataSourceId": 89594
                 },
-                "inv30": {
+                "ct02_inv12": {
                     "DataSourceName": "Inversor CT2.12",
                     "ElementId": 7120,
                     "DataSourceId": 90658
                 },
-                "inv31": {
+                "ct02_inv13": {
                     "DataSourceName": "Inversor CT2.13",
                     "ElementId": 7111,
                     "DataSourceId": 89974
                 },
-                "inv32": {
+                "ct02_inv14": {
                     "DataSourceName": "Inversor CT2.14",
                     "ElementId": 7117,
                     "DataSourceId": 90430
                 },
-                "inv33": {
+                "ct02_inv15": {
                     "DataSourceName": "Inversor CT2.15",
                     "ElementId": 7116,
                     "DataSourceId": 90354
                 },
-                "inv34": {
+                "ct02_inv16": {
                     "DataSourceName": "Inversor CT2.16",
                     "ElementId": 7121,
                     "DataSourceId": 90734
                 },
-                "inv35": {
+                "ct02_inv17": {
                     "DataSourceName": "Inversor CT2.17",
                     "ElementId": 7122,
                     "DataSourceId": 90812
                 },
-                "inv36": {
+                "ct02_inv18": {
                     "DataSourceName": "Inversor CT2.18",
                     "ElementId": 7123,
                     "DataSourceId": 90890
                 },
-                "inv37": {
+                "ct03_inv01": {
                     "DataSourceName": "Inversor CT3.01",
                     "ElementId": 7233,
                     "DataSourceId": 94017
                 },
-                "inv38": {
+                "ct03_inv02": {
                     "DataSourceName": "Inversor CT3.02",
                     "ElementId": 7231,
                     "DataSourceId": 93865
                 },
-                "inv39": {
+                "ct03_inv03": {
                     "DataSourceName": "Inversor CT3.03",
                     "ElementId": 7237,
                     "DataSourceId": 94321
                 },
-                "inv40": {
+                "ct03_inv04": {
                     "DataSourceName": "Inversor CT3.04",
                     "ElementId": 7236,
                     "DataSourceId": 94245
                 },
-                "inv41": {
+                "ct03_inv05": {
                     "DataSourceName": "Inversor CT3.05",
                     "ElementId": 7238,
                     "DataSourceId": 94397
                 },
-                "inv42": {
+                "ct03_inv06": {
                     "DataSourceName": "Inversor CT3.06",
                     "ElementId": 7234,
                     "DataSourceId": 94093
                 },
-                "inv43": {
+                "ct03_inv07": {
                     "DataSourceName": "Inversor CT3.07",
                     "ElementId": 7239,
                     "DataSourceId": 94473
                 },
-                "inv44": {
+                "ct03_inv08": {
                     "DataSourceName": "Inversor CT3.08",
                     "ElementId": 7229,
                     "DataSourceId": 93713
                 },
-                "inv45": {
+                "ct03_inv09": {
                     "DataSourceName": "Inversor CT3.09",
                     "ElementId": 7232,
                     "DataSourceId": 93941
                 },
-                "inv46": {
+                "ct03_inv10": {
                     "DataSourceName": "Inversor CT3.10",
                     "ElementId": 7230,
                     "DataSourceId": 93789
                 },
-                "inv47": {
+                "ct03_inv11": {
                     "DataSourceName": "Inversor CT3.11",
                     "ElementId": 7235,
                     "DataSourceId": 94169
                 },
-                "inv48": {
+                "ct03_inv12": {
                     "DataSourceName": "Inversor CT3.12",
                     "ElementId": 7240,
                     "DataSourceId": 94549
                 },
-                "inv49": {
+                "ct03_inv13": {
                     "DataSourceName": "Inversor CT3.13",
                     "ElementId": 7241,
                     "DataSourceId": 94627
                 },
-                "inv50": {
+                "ct03_inv14": {
                     "DataSourceName": "Inversor CT3.14",
                     "ElementId": 7242,
                     "DataSourceId": 94705
                 },
-                "inv51": {
+                "ct03_inv15": {
                     "DataSourceName": "Inversor CT3.15",
                     "ElementId": 7243,
                     "DataSourceId": 94783
                 },
-                "inv52": {
+                "ct03_inv16": {
                     "DataSourceName": "Inversor CT3.16",
                     "ElementId": 7244,
                     "DataSourceId": 94861
                 },
-                "inv53": {
+                "ct03_inv17": {
                     "DataSourceName": "Inversor CT3.17",
                     "ElementId": 7245,
                     "DataSourceId": 94939
                 },
-                "inv54": {
+                "ct03_inv18": {
                     "DataSourceName": "Inversor CT3.18",
                     "ElementId": 7246,
                     "DataSourceId": 95017
@@ -1627,227 +1630,227 @@ DataSourceMap = {
                 }
             },
             "Generation": {
-                "inv1": {
+                "ct01_inv01": {
                     "DataSourceName": "Inversor CT1.01",
                     "ElementId": 9536,
                     "DataSourceId": 120391
                 },
-                "inv2": {
+                "ct01_inv02": {
                     "DataSourceName": "Inversor CT1.02",
                     "ElementId": 9537,
                     "DataSourceId": 120476
                 },
-                "inv3": {
+                "ct01_inv03": {
                     "DataSourceName": "Inversor CT1.03",
                     "ElementId": 9538,
                     "DataSourceId": 120561
                 },
-                "inv4": {
+                "ct01_inv04": {
                     "DataSourceName": "Inversor CT1.04",
                     "ElementId": 9539,
                     "DataSourceId": 120646
                 },
-                "inv5": {
+                "ct01_inv05": {
                     "DataSourceName": "Inversor CT1.05",
                     "ElementId": 9540,
                     "DataSourceId": 120731
                 },
-                "inv6": {
+                "ct01_inv06": {
                     "DataSourceName": "Inversor CT1.06",
                     "ElementId": 9541,
                     "DataSourceId": 120816
                 },
-                "inv7": {
+                "ct01_inv07": {
                     "DataSourceName": "Inversor CT1.07",
                     "ElementId": 9542,
                     "DataSourceId": 120901
                 },
-                "inv8": {
+                "ct01_inv08": {
                     "DataSourceName": "Inversor CT1.08",
                     "ElementId": 9543,
                     "DataSourceId": 120986
                 },
-                "inv9": {
+                "ct01_inv09": {
                     "DataSourceName": "Inversor CT1.09",
                     "ElementId": 9544,
                     "DataSourceId": 121071
                 },
-                "inv10": {
+                "ct01_inv10": {
                     "DataSourceName": "Inversor CT1.10",
                     "ElementId": 9545,
                     "DataSourceId": 121156
                 },
-                "inv11": {
+                "ct01_inv11": {
                     "DataSourceName": "Inversor CT1.11",
                     "ElementId": 9546,
                     "DataSourceId": 121241
                 },
-                "inv12": {
+                "ct01_inv12": {
                     "DataSourceName": "Inversor CT1.12",
                     "ElementId": 9547,
                     "DataSourceId": 121326
                 },
-                "inv13": {
+                "ct01_inv13": {
                     "DataSourceName": "Inversor CT1.13",
                     "ElementId": 9548,
                     "DataSourceId": 121411
                 },
-                "inv14": {
+                "ct01_inv14": {
                     "DataSourceName": "Inversor CT1.14",
                     "ElementId": 9549,
                     "DataSourceId": 121496
                 },
-                "inv15": {
+                "ct01_inv15": {
                     "DataSourceName": "Inversor CT1.15",
                     "ElementId": 9550,
                     "DataSourceId": 121581
                 },
-                "inv16": {
+                "ct02_inv01": {
                     "DataSourceName": "Inversor CT2.01",
                     "ElementId": 9559,
                     "DataSourceId": 121933
                 },
-                "inv17": {
+                "ct02_inv02": {
                     "DataSourceName": "Inversor CT2.02",
                     "ElementId": 9560,
                     "DataSourceId": 122018
                 },
-                "inv18": {
+                "ct02_inv03": {
                     "DataSourceName": "Inversor CT2.03",
                     "ElementId": 9561,
                     "DataSourceId": 122103
                 },
-                "inv19": {
+                "ct02_inv04": {
                     "DataSourceName": "Inversor CT2.04",
                     "ElementId": 9562,
                     "DataSourceId": 122188
                 },
-                "inv20": {
+                "ct02_inv05": {
                     "DataSourceName": "Inversor CT2.05",
                     "ElementId": 9563,
                     "DataSourceId": 122273
                 },
-                "inv21": {
+                "ct02_inv06": {
                     "DataSourceName": "Inversor CT2.06",
                     "ElementId": 9564,
                     "DataSourceId": 122358
                 },
-                "inv22": {
+                "ct02_inv07": {
                     "DataSourceName": "Inversor CT2.07",
                     "ElementId": 9565,
                     "DataSourceId": 122443
                 },
-                "inv23": {
+                "ct02_inv08": {
                     "DataSourceName": "Inversor CT2.08",
                     "ElementId": 9566,
                     "DataSourceId": 122528
                 },
-                "inv24": {
+                "ct02_inv09": {
                     "DataSourceName": "Inversor CT2.09",
                     "ElementId": 9567,
                     "DataSourceId": 122613
                 },
-                "inv25": {
+                "ct02_inv10": {
                     "DataSourceName": "Inversor CT2.10",
                     "ElementId": 9568,
                     "DataSourceId": 122698
                 },
-                "inv26": {
+                "ct02_inv11": {
                     "DataSourceName": "Inversor CT2.11",
                     "ElementId": 9569,
                     "DataSourceId": 122783
                 },
-                "inv27": {
+                "ct02_inv12": {
                     "DataSourceName": "Inversor CT2.12",
                     "ElementId": 9570,
                     "DataSourceId": 122868
                 },
-                "inv28": {
+                "ct02_inv13": {
                     "DataSourceName": "Inversor CT2.13",
                     "ElementId": 9571,
                     "DataSourceId": 122953
                 },
-                "inv29": {
+                "ct02_inv14": {
                     "DataSourceName": "Inversor CT2.14",
                     "ElementId": 9572,
                     "DataSourceId": 123038
                 },
-                "inv30": {
+                "ct02_inv15": {
                     "DataSourceName": "Inversor CT2.15",
                     "ElementId": 9573,
                     "DataSourceId": 123123
                 },
-                "inv31": {
+                "ct03_inv01": {
                     "DataSourceName": "Inversor CT3.01",
                     "ElementId": 9583,
                     "DataSourceId": 123511
                 },
-                "inv32": {
+                "ct03_inv02": {
                     "DataSourceName": "Inversor CT3.02",
                     "ElementId": 9584,
                     "DataSourceId": 123596
                 },
-                "inv33": {
+                "ct03_inv03": {
                     "DataSourceName": "Inversor CT3.03",
                     "ElementId": 9585,
                     "DataSourceId": 123681
                 },
-                "inv34": {
+                "ct03_inv04": {
                     "DataSourceName": "Inversor CT3.04",
                     "ElementId": 9586,
                     "DataSourceId": 123766
                 },
-                "inv35": {
+                "ct03_inv05": {
                     "DataSourceName": "Inversor CT3.05",
                     "ElementId": 9587,
                     "DataSourceId": 123851
                 },
-                "inv36": {
+                "ct03_inv06": {
                     "DataSourceName": "Inversor CT3.06",
                     "ElementId": 9588,
                     "DataSourceId": 123936
                 },
-                "inv37": {
+                "ct03_inv07": {
                     "DataSourceName": "Inversor CT3.07",
                     "ElementId": 9589,
                     "DataSourceId": 124021
                 },
-                "inv38": {
+                "ct03_inv08": {
                     "DataSourceName": "Inversor CT3.08",
                     "ElementId": 9590,
                     "DataSourceId": 124106
                 },
-                "inv39": {
+                "ct03_inv09": {
                     "DataSourceName": "Inversor CT3.09",
                     "ElementId": 9591,
                     "DataSourceId": 124191
                 },
-                "inv40": {
+                "ct03_inv10": {
                     "DataSourceName": "Inversor CT3.10",
                     "ElementId": 9592,
                     "DataSourceId": 124276
                 },
-                "inv41": {
+                "ct03_inv11": {
                     "DataSourceName": "Inversor CT3.11",
                     "ElementId": 9593,
                     "DataSourceId": 124361
                 },
-                "inv42": {
+                "ct03_inv12": {
                     "DataSourceName": "Inversor CT3.12",
                     "ElementId": 9594,
                     "DataSourceId": 124446
                 },
-                "inv43": {
+                "ct03_inv13": {
                     "DataSourceName": "Inversor CT3.13",
                     "ElementId": 9595,
                     "DataSourceId": 124531
                 },
-                "inv44": {
+                "ct03_inv14": {
                     "DataSourceName": "Inversor CT3.14",
                     "ElementId": 9596,
                     "DataSourceId": 124616
                 },
-                "inv45": {
+                "ct03_inv15": {
                     "DataSourceName": "Inversor CT3.15",
                     "ElementId": 9597,
                     "DataSourceId": 124701
@@ -2066,87 +2069,87 @@ DataSourceMap = {
                 }
             },
             "Generation": {
-                "inv1": {
+                "ct01_inv01": {
                     "fieldName": "KwAC",
                     "hardwareId": 297528,
                     "DataSourceName": "Inversor CT1.01",
                 },
-                "inv2": {
+                "ct01_inv02": {
                     "fieldName": "KwAC",
                     "hardwareId": 297529,
                     "DataSourceName": "Inversor CT1.02",
                 },
-                "inv3": {
+                "ct01_inv03": {
                     "fieldName": "KwAC",
                     "hardwareId": 297531,
                     "DataSourceName": "Inversor CT1.03",
                 },
-                "inv4": {
+                "ct01_inv04": {
                     "fieldName": "KwAC",
                     "hardwareId": 297532,
                     "DataSourceName": "Inversor CT1.04",
                 },
-                "inv5": {
+                "ct01_inv05": {
                     "fieldName": "KwAC",
                     "hardwareId": 297533,
                     "DataSourceName": "Inversor CT1.05",
                 },
-                "inv6": {
+                "ct01_inv06": {
                     "fieldName": "KwAC",
                     "hardwareId": 297534,
                     "DataSourceName": "Inversor CT1.06",
                 },
-                "inv7": {
+                "ct01_inv07": {
                     "fieldName": "KwAC",
                     "hardwareId": 297535,
                     "DataSourceName": "Inversor CT1.07",
                 },
-                "inv8": {
+                "ct01_inv08": {
                     "fieldName": "KwAC",
                     "hardwareId": 297536,
                     "DataSourceName": "Inversor CT1.08",
                 },
-                "inv9": {
+                "ct01_inv09": {
                     "fieldName": "KwAC",
                     "hardwareId": 297537,
                     "DataSourceName": "Inversor CT1.09",
                 },
-                "inv10": {
+                "ct01_inv10": {
                     "fieldName": "KwAC",
                     "hardwareId": 297538,
                     "DataSourceName": "Inversor CT1.10",
                 },
-                "inv11": {
+                "ct01_inv11": {
                     "fieldName": "KwAC",
                     "hardwareId": 297539,
                     "DataSourceName": "Inversor CT1.11",
                 },
-                "inv12": {
+                "ct01_inv12": {
                     "fieldName": "KwAC",
                     "hardwareId": 297540,
                     "DataSourceName": "Inversor CT1.12",
                 },
-                "inv13": {
+                "ct01_inv13": {
                     "fieldName": "KwAC",
                     "hardwareId": 297541,
                     "DataSourceName": "Inversor CT1.13",
                 },
-                "inv14": {
+                "ct01_inv14": {
                     "fieldName": "KwAC",
                     "hardwareId": 297542,
                     "DataSourceName": "Inversor CT1.14",
                 },
-                "inv15": {
+                "ct01_inv15": {
                     "fieldName": "KwAC",
                     "hardwareId": 297543,
                     "DataSourceName": "Inversor CT1.15",
                 },
-                "inv16": {
+                "ct01_inv16": {
                     "fieldName": "KwAC",
                     "hardwareId": 297545,
                     "DataSourceName": "Inversor CT1.16",
                 },
-                "inv17": {
+                "ct01_inv17": {
                     "fieldName": "KwAC",
                     "hardwareId": 297546,
                     "DataSourceName": "Inversor CT1.17",
@@ -2479,67 +2482,67 @@ DataSourceMap = {
                 }
             },
             "Generation": {
-                "inv1": {
+                "ct01_inv01": {
                     "fieldName": "KW",
                     "hardwareId": 322801,
                     "DataSourceName": "Inversor CT1.01",
                 },
-                "inv2": {
+                "ct01_inv02": {
                     "fieldName": "KW",
                     "hardwareId": 322802,
                     "DataSourceName": "Inversor CT1.02",
                 },
-                "inv3": {
+                "ct01_inv03": {
                     "fieldName": "KW",
                     "hardwareId": 322803,
                     "DataSourceName": "Inversor CT1.03",
                 },
-                "inv4": {
+                "ct01_inv04": {
                     "fieldName": "KW",
                     "hardwareId": 322804,
                     "DataSourceName": "Inversor CT1.04",
                 },
-                "inv5": {
+                "ct01_inv05": {
                     "fieldName": "KW",
                     "hardwareId": 322805,
                     "DataSourceName": "Inversor CT1.05",
                 },
-                "inv6": {
+                "ct01_inv06": {
                     "fieldName": "KW",
                     "hardwareId": 322806,
                     "DataSourceName": "Inversor CT1.06",
                 },
-                "inv7": {
+                "ct01_inv07": {
                     "fieldName": "KW",
                     "hardwareId": 322807,
                     "DataSourceName": "Inversor CT1.07",
                 },
-                "inv8": {
+                "ct01_inv08": {
                     "fieldName": "KW",
                     "hardwareId": 322808,
                     "DataSourceName": "Inversor CT1.08",
                 },
-                "inv9": {
+                "ct01_inv09": {
                     "fieldName": "KW",
                     "hardwareId": 322809,
                     "DataSourceName": "Inversor CT1.09",
                 },
-                "inv10": {
+                "ct01_inv10": {
                     "fieldName": "KW",
                     "hardwareId": 322810,
                     "DataSourceName": "Inversor CT1.10",
                 },
-                "inv11": {
+                "ct01_inv11": {
                     "fieldName": "KW",
                     "hardwareId": 322811,
                     "DataSourceName": "Inversor CT1.11",
                 },
-                "inv12": {
+                "ct01_inv12": {
                     "fieldName": "KW",
                     "hardwareId": 322812,
                     "DataSourceName": "Inversor CT1.12",
                 },
-                "inv13": {
+                "ct01_inv13": {
                     "fieldName": "KW",
                     "hardwareId": 322813,
                     "DataSourceName": "Inversor CT1.13",
@@ -3842,197 +3845,197 @@ DataSourceMap = {
                 }
             },
             "Generation": {
-                "inv1": {
+                "ct01_inv01": {
                     "fieldName": "KW",
                     "hardwareId": 393945,
                     "DataSourceName": "Inversor CT1.01",
                 },
-                "inv2": {
+                "ct01_inv02": {
                     "fieldName": "KW",
                     "hardwareId": 393946,
                     "DataSourceName": "Inversor CT1.02",
                 },
-                "inv3": {
+                "ct01_inv03": {
                     "fieldName": "KW",
                     "hardwareId": 393947,
                     "DataSourceName": "Inversor CT1.03",
                 },
-                "inv4": {
+                "ct01_inv04": {
                     "fieldName": "KW",
                     "hardwareId": 393948,
                     "DataSourceName": "Inversor CT1.04",
                 },
-                "inv5": {
+                "ct01_inv05": {
                     "fieldName": "KW",
                     "hardwareId": 393949,
                     "DataSourceName": "Inversor CT1.05",
                 },
-                "inv6": {
+                "ct01_inv06": {
                     "fieldName": "KW",
                     "hardwareId": 393950,
                     "DataSourceName": "Inversor CT1.06",
                 },
-                "inv7": {
+                "ct01_inv07": {
                     "fieldName": "KW",
                     "hardwareId": 393951,
                     "DataSourceName": "Inversor CT1.07",
                 },
-                "inv8": {
+                "ct01_inv08": {
                     "fieldName": "KW",
                     "hardwareId": 393952,
                     "DataSourceName": "Inversor CT1.08",
                 },
-                "inv9": {
+                "ct01_inv09": {
                     "fieldName": "KW",
                     "hardwareId": 393953,
                     "DataSourceName": "Inversor CT1.09",
                 },
-                "inv10": {
+                "ct01_inv10": {
                     "fieldName": "KW",
                     "hardwareId": 393954,
                     "DataSourceName": "Inversor CT1.10",
                 },
-                "inv11": {
+                "ct01_inv11": {
                     "fieldName": "KW",
                     "hardwareId": 393955,
                     "DataSourceName": "Inversor CT1.11",
                 },
-                "inv12": {
+                "ct01_inv12": {
                     "fieldName": "KW",
                     "hardwareId": 393956,
                     "DataSourceName": "Inversor CT1.12",
                 },
-                "inv13": {
+                "ct01_inv13": {
                     "fieldName": "KW",
                     "hardwareId": 393957,
                     "DataSourceName": "Inversor CT1.13",
                 },
-                "inv14": {
+                "ct02_inv01": {
                     "fieldName": "KW",
                     "hardwareId": 393959,
                     "DataSourceName": "Inversor CT2.01",
                 },
-                "inv15": {
+                "ct02_inv02": {
                     "fieldName": "KW",
                     "hardwareId": 393960,
                     "DataSourceName": "Inversor CT2.02",
                 },
-                "inv16": {
+                "ct02_inv03": {
                     "fieldName": "KW",
                     "hardwareId": 393961,
                     "DataSourceName": "Inversor CT2.03",
                 },
-                "inv17": {
+                "ct02_inv04": {
                     "fieldName": "KW",
                     "hardwareId": 393962,
                     "DataSourceName": "Inversor CT2.04",
                 },
-                "inv18": {
+                "ct02_inv05": {
                     "fieldName": "KW",
                     "hardwareId": 393963,
                     "DataSourceName": "Inversor CT2.05",
                 },
-                "inv19": {
+                "ct02_inv06": {
                     "fieldName": "KW",
                     "hardwareId": 393964,
                     "DataSourceName": "Inversor CT2.06",
                 },
-                "inv20": {
+                "ct02_inv07": {
                     "fieldName": "KW",
                     "hardwareId": 393965,
                     "DataSourceName": "Inversor CT2.07",
                 },
-                "inv21": {
+                "ct02_inv08": {
                     "fieldName": "KW",
                     "hardwareId": 393966,
                     "DataSourceName": "Inversor CT2.08",
                 },
-                "inv22": {
+                "ct02_inv09": {
                     "fieldName": "KW",
                     "hardwareId": 393967,
                     "DataSourceName": "Inversor CT2.09",
                 },
-                "inv23": {
+                "ct02_inv10": {
                     "fieldName": "KW",
                     "hardwareId": 393968,
                     "DataSourceName": "Inversor CT2.10",
                 },
-                "inv24": {
+                "ct02_inv11": {
                     "fieldName": "KW",
                     "hardwareId": 393969,
                     "DataSourceName": "Inversor CT2.11",
                 },
-                "inv25": {
+                "ct02_inv12": {
                     "fieldName": "KW",
                     "hardwareId": 393970,
                     "DataSourceName": "Inversor CT2.12",
                 },
-                "inv26": {
+                "ct02_inv13": {
                     "fieldName": "KW",
                     "hardwareId": 393971,
                     "DataSourceName": "Inversor CT2.13",
                 },
-                "inv27": {
+                "ct03_inv01": {
                     "fieldName": "KW",
                     "hardwareId": 393972,
                     "DataSourceName": "Inversor CT3.01",
                 },
-                "inv28": {
+                "ct03_inv02": {
                     "fieldName": "KW",
                     "hardwareId": 393973,
                     "DataSourceName": "Inversor CT3.02",
                 },
-                "inv29": {
+                "ct03_inv03": {
                     "fieldName": "KW",
                     "hardwareId": 393974,
                     "DataSourceName": "Inversor CT3.03",
                 },
-                "inv30": {
+                "ct03_inv04": {
                     "fieldName": "KW",
                     "hardwareId": 393975,
                     "DataSourceName": "Inversor CT3.04",
                 },
-                "inv31": {
+                "ct03_inv05": {
                     "fieldName": "KW",
                     "hardwareId": 393976,
                     "DataSourceName": "Inversor CT3.05",
                 },
-                "inv32": {
+                "ct03_inv06": {
                     "fieldName": "KW",
                     "hardwareId": 393977,
                     "DataSourceName": "Inversor CT3.06",
                 },
-                "inv33": {
+                "ct03_inv07": {
                     "fieldName": "KW",
                     "hardwareId": 393978,
                     "DataSourceName": "Inversor CT3.07",
                 },
-                "inv34": {
+                "ct03_inv08": {
                     "fieldName": "KW",
                     "hardwareId": 393979,
                     "DataSourceName": "Inversor CT3.08",
                 },
-                "inv35": {
+                "ct03_inv09": {
                     "fieldName": "KW",
                     "hardwareId": 393980,
                     "DataSourceName": "Inversor CT3.09",
                 },
-                "inv36": {
+                "ct03_inv10": {
                     "fieldName": "KW",
                     "hardwareId": 393981,
                     "DataSourceName": "Inversor CT3.10",
                 },
-                "inv37": {
+                "ct03_inv11": {
                     "fieldName": "KW",
                     "hardwareId": 393982,
                     "DataSourceName": "Inversor CT3.11",
                 },
-                "inv38": {
+                "ct03_inv12": {
                     "fieldName": "KW",
                     "hardwareId": 393983,
                     "DataSourceName": "Inversor CT3.12",
                 },
-                "inv39": {
+                "ct03_inv13": {
                     "fieldName": "KW",
                     "hardwareId": 393984,
                     "DataSourceName": "Inversor CT3.13",
@@ -4103,62 +4106,62 @@ DataSourceMap = {
                 }
             },
             "Generation": {
-                "inv1": {
+                "ct01_inv01": {
                     "fieldName": "KwAC",
                     "hardwareId": 395476,
                     "DataSourceName": "Inversor CT1.01",
                 },
-                "inv2": {
+                "ct01_inv02": {
                     "fieldName": "KwAC",
                     "hardwareId": 395477,
                     "DataSourceName": "Inversor CT1.02",
                 },
-                "inv3": {
+                "ct01_inv03": {
                     "fieldName": "KwAC",
                     "hardwareId": 395478,
                     "DataSourceName": "Inversor CT1.03",
                 },
-                "inv4": {
+                "ct01_inv04": {
                     "fieldName": "KwAC",
                     "hardwareId": 395479,
                     "DataSourceName": "Inversor CT1.04",
                 },
-                "inv5": {
+                "ct01_inv05": {
                     "fieldName": "KwAC",
                     "hardwareId": 395480,
                     "DataSourceName": "Inversor CT1.05",
                 },
-                "inv6": {
+                "ct01_inv06": {
                     "fieldName": "KwAC",
                     "hardwareId": 395481,
                     "DataSourceName": "Inversor CT1.06",
                 },
-                "inv7": {
+                "ct01_inv07": {
                     "fieldName": "KwAC",
                     "hardwareId": 395482,
                     "DataSourceName": "Inversor CT1.07",
                 },
-                "inv8": {
+                "ct01_inv08": {
                     "fieldName": "KwAC",
                     "hardwareId": 395483,
                     "DataSourceName": "Inversor CT1.08",
                 },
-                "inv9": {
+                "ct01_inv09": {
                     "fieldName": "KwAC",
                     "hardwareId": 395484,
                     "DataSourceName": "Inversor CT1.09",
                 },
-                "inv10": {
+                "ct01_inv10": {
                     "fieldName": "KwAC",
                     "hardwareId": 395485,
                     "DataSourceName": "Inversor CT1.10",
                 },
-                "inv11": {
+                "ct01_inv11": {
                     "fieldName": "KwAC",
                     "hardwareId": 395486,
                     "DataSourceName": "Inversor CT1.11",
                 },
-                "inv12": {
+                "ct01_inv12": {
                     "fieldName": "KwAC",
                     "hardwareId": 395487,
                     "DataSourceName": "Inversor CT1.12",
@@ -4274,197 +4277,197 @@ DataSourceMap = {
                 }
             },
             "Generation": {
-                "inv1": {
+                "ct01_inv01": {
                     "fieldName": "KwAC",
                     "hardwareId": 395225,
                     "DataSourceName": "Inversor CT1.01",
                 },
-                "inv2": {
+                "ct01_inv02": {
                     "fieldName": "KwAC",
                     "hardwareId": 395226,
                     "DataSourceName": "Inversor CT1.02",
                 },
-                "inv3": {
+                "ct01_inv03": {
                     "fieldName": "KwAC",
                     "hardwareId": 395227,
                     "DataSourceName": "Inversor CT1.03",
                 },
-                "inv4": {
+                "ct01_inv04": {
                     "fieldName": "KwAC",
                     "hardwareId": 395228,
                     "DataSourceName": "Inversor CT1.04",
                 },
-                "inv5": {
+                "ct01_inv05": {
                     "fieldName": "KwAC",
                     "hardwareId": 395229,
                     "DataSourceName": "Inversor CT1.05",
                 },
-                "inv6": {
+                "ct01_inv06": {
                     "fieldName": "KwAC",
                     "hardwareId": 395230,
                     "DataSourceName": "Inversor CT1.06",
                 },
-                "inv7": {
+                "ct01_inv07": {
                     "fieldName": "KwAC",
                     "hardwareId": 395231,
                     "DataSourceName": "Inversor CT1.07",
                 },
-                "inv8": {
+                "ct01_inv08": {
                     "fieldName": "KwAC",
                     "hardwareId": 395232,
                     "DataSourceName": "Inversor CT1.08",
                 },
-                "inv9": {
+                "ct01_inv09": {
                     "fieldName": "KwAC",
                     "hardwareId": 395233,
                     "DataSourceName": "Inversor CT1.09",
                 },
-                "inv10": {
+                "ct01_inv10": {
                     "fieldName": "KwAC",
                     "hardwareId": 395234,
                     "DataSourceName": "Inversor CT1.10",
                 },
-                "inv11": {
+                "ct01_inv11": {
                     "fieldName": "KwAC",
                     "hardwareId": 395235,
                     "DataSourceName": "Inversor CT1.11",
                 },
-                "inv12": {
+                "ct01_inv12": {
                     "fieldName": "KwAC",
                     "hardwareId": 395236,
                     "DataSourceName": "Inversor CT1.12",
                 },
-                "inv13": {
+                "ct01_inv13": {
                     "fieldName": "KwAC",
                     "hardwareId": 395237,
                     "DataSourceName": "Inversor CT1.13",
                 },
-                "inv14": {
+                "ct02_inv01": {
                     "fieldName": "KwAC",
                     "hardwareId": 395238,
                     "DataSourceName": "Inversor CT2.01",
                 },
-                "inv15": {
+                "ct02_inv02": {
                     "fieldName": "KwAC",
                     "hardwareId": 395239,
                     "DataSourceName": "Inversor CT2.02",
                 },
-                "inv16": {
+                "ct02_inv03": {
                     "fieldName": "KwAC",
                     "hardwareId": 395240,
                     "DataSourceName": "Inversor CT2.03",
                 },
-                "inv17": {
+                "ct02_inv04": {
                     "fieldName": "KwAC",
                     "hardwareId": 395241,
                     "DataSourceName": "Inversor CT2.04",
                 },
-                "inv18": {
+                "ct02_inv05": {
                     "fieldName": "KwAC",
                     "hardwareId": 395242,
                     "DataSourceName": "Inversor CT2.05",
                 },
-                "inv19": {
+                "ct02_inv06": {
                     "fieldName": "KwAC",
                     "hardwareId": 395243,
                     "DataSourceName": "Inversor CT2.06",
                 },
-                "inv20": {
+                "ct02_inv07": {
                     "fieldName": "KwAC",
                     "hardwareId": 395244,
                     "DataSourceName": "Inversor CT2.07",
                 },
-                "inv21": {
+                "ct02_inv08": {
                     "fieldName": "KwAC",
                     "hardwareId": 395245,
                     "DataSourceName": "Inversor CT2.08",
                 },
-                "inv22": {
+                "ct02_inv09": {
                     "fieldName": "KwAC",
                     "hardwareId": 395246,
                     "DataSourceName": "Inversor CT2.09",
                 },
-                "inv23": {
+                "ct02_inv10": {
                     "fieldName": "KwAC",
                     "hardwareId": 395247,
                     "DataSourceName": "Inversor CT2.10",
                 },
-                "inv24": {
+                "ct02_inv11": {
                     "fieldName": "KwAC",
                     "hardwareId": 395248,
                     "DataSourceName": "Inversor CT2.11",
                 },
-                "inv25": {
+                "ct02_inv12": {
                     "fieldName": "KwAC",
                     "hardwareId": 395249,
                     "DataSourceName": "Inversor CT2.12",
                 },
-                "inv26": {
+                "ct02_inv13": {
                     "fieldName": "KwAC",
                     "hardwareId": 395250,
                     "DataSourceName": "Inversor CT2.13",
                 },
-                "inv27": {
+                "ct03_inv01": {
                     "fieldName": "KwAC",
                     "hardwareId": 395251,
                     "DataSourceName": "Inversor CT3.01",
                 },
-                "inv28": {
+                "ct03_inv02": {
                     "fieldName": "KwAC",
                     "hardwareId": 395252,
                     "DataSourceName": "Inversor CT3.02",
                 },
-                "inv29": {
+                "ct03_inv03": {
                     "fieldName": "KwAC",
                     "hardwareId": 395253,
                     "DataSourceName": "Inversor CT3.03",
                 },
-                "inv30": {
+                "ct03_inv04": {
                     "fieldName": "KwAC",
                     "hardwareId": 395254,
                     "DataSourceName": "Inversor CT3.04",
                 },
-                "inv31": {
+                "ct03_inv05": {
                     "fieldName": "KwAC",
                     "hardwareId": 395255,
                     "DataSourceName": "Inversor CT3.05",
                 },
-                "inv32": {
+                "ct03_inv06": {
                     "fieldName": "KwAC",
                     "hardwareId": 395256,
                     "DataSourceName": "Inversor CT3.06",
                 },
-                "inv33": {
+                "ct03_inv07": {
                     "fieldName": "KwAC",
                     "hardwareId": 395257,
                     "DataSourceName": "Inversor CT3.07",
                 },
-                "inv34": {
+                "ct03_inv08": {
                     "fieldName": "KwAC",
                     "hardwareId": 395258,
                     "DataSourceName": "Inversor CT3.08",
                 },
-                "inv35": {
+                "ct03_inv09": {
                     "fieldName": "KwAC",
                     "hardwareId": 395259,
                     "DataSourceName": "Inversor CT3.09",
                 },
-                "inv36": {
+                "ct03_inv10": {
                     "fieldName": "KwAC",
                     "hardwareId": 395260,
                     "DataSourceName": "Inversor CT3.10",
                 },
-                "inv37": {
+                "ct03_inv11": {
                     "fieldName": "KwAC",
                     "hardwareId": 395261,
                     "DataSourceName": "Inversor CT3.11",
                 },
-                "inv38": {
+                "ct03_inv12": {
                     "fieldName": "KwAC",
                     "hardwareId": 395262,
                     "DataSourceName": "Inversor CT3.12",
                 },
-                "inv39": {
+                "ct03_inv13": {
                     "fieldName": "KwAC",
                     "hardwareId": 395263,
                     "DataSourceName": "Inversor CT3.13",
@@ -4535,57 +4538,57 @@ DataSourceMap = {
                 }
             },
             "Generation": {
-                "inv1": {
+                "ct01_inv01": {
                     "fieldName": "KW",
                     "hardwareId": 395576,
                     "DataSourceName": "Inversor CT1.01",
                 },
-                "inv2": {
+                "ct01_inv02": {
                     "fieldName": "KW",
                     "hardwareId": 395577,
                     "DataSourceName": "Inversor CT1.02",
                 },
-                "inv3": {
+                "ct01_inv03": {
                     "fieldName": "KW",
                     "hardwareId": 395578,
                     "DataSourceName": "Inversor CT1.03",
                 },
-                "inv4": {
+                "ct01_inv04": {
                     "fieldName": "KW",
                     "hardwareId": 395579,
                     "DataSourceName": "Inversor CT1.04",
                 },
-                "inv5": {
+                "ct01_inv05": {
                     "fieldName": "KW",
                     "hardwareId": 395580,
                     "DataSourceName": "Inversor CT1.05",
                 },
-                "inv6": {
+                "ct01_inv06": {
                     "fieldName": "KW",
                     "hardwareId": 395581,
                     "DataSourceName": "Inversor CT1.06",
                 },
-                "inv7": {
+                "ct01_inv07": {
                     "fieldName": "KW",
                     "hardwareId": 395582,
                     "DataSourceName": "Inversor CT1.07",
                 },
-                "inv8": {
+                "ct01_inv08": {
                     "fieldName": "KW",
                     "hardwareId": 395583,
                     "DataSourceName": "Inversor CT1.08",
                 },
-                "inv9": {
+                "ct01_inv09": {
                     "fieldName": "KW",
                     "hardwareId": 395584,
                     "DataSourceName": "Inversor CT1.09",
                 },
-                "inv10": {
+                "ct01_inv10": {
                     "fieldName": "KW",
                     "hardwareId": 395585,
                     "DataSourceName": "Inversor CT1.10",
                 },
-                "inv11": {
+                "ct01_inv11": {
                     "fieldName": "KW",
                     "hardwareId": 395586,
                     "DataSourceName": "Inversor CT1.11",
@@ -4676,132 +4679,132 @@ DataSourceMap = {
                 }
             },
             "Generation": {
-                "inv1": {
+                "ct01_inv01": {
                     "fieldName": "KwAC",
                     "hardwareId": 395512,
                     "DataSourceName": "Inversor CT1.01",
                 },
-                "inv2": {
+                "ct01_inv02": {
                     "fieldName": "KwAC",
                     "hardwareId": 395513,
                     "DataSourceName": "Inversor CT1.02",
                 },
-                "inv3": {
+                "ct01_inv03": {
                     "fieldName": "KwAC",
                     "hardwareId": 395514,
                     "DataSourceName": "Inversor CT1.03",
                 },
-                "inv4": {
+                "ct01_inv04": {
                     "fieldName": "KwAC",
                     "hardwareId": 395515,
                     "DataSourceName": "Inversor CT1.04",
                 },
-                "inv5": {
+                "ct01_inv05": {
                     "fieldName": "KwAC",
                     "hardwareId": 395516,
                     "DataSourceName": "Inversor CT1.05",
                 },
-                "inv6": {
+                "ct01_inv06": {
                     "fieldName": "KwAC",
                     "hardwareId": 395517,
                     "DataSourceName": "Inversor CT1.06",
                 },
-                "inv7": {
+                "ct01_inv07": {
                     "fieldName": "KwAC",
                     "hardwareId": 395518,
                     "DataSourceName": "Inversor CT1.07",
                 },
-                "inv8": {
+                "ct01_inv08": {
                     "fieldName": "KwAC",
                     "hardwareId": 395519,
                     "DataSourceName": "Inversor CT1.08",
                 },
-                "inv9": {
+                "ct01_inv09": {
                     "fieldName": "KwAC",
                     "hardwareId": 395520,
                     "DataSourceName": "Inversor CT1.09",
                 },
-                "inv10": {
+                "ct01_inv10": {
                     "fieldName": "KwAC",
                     "hardwareId": 395521,
                     "DataSourceName": "Inversor CT1.10",
                 },
-                "inv11": {
+                "ct01_inv11": {
                     "fieldName": "KwAC",
                     "hardwareId": 395522,
                     "DataSourceName": "Inversor CT1.11",
                 },
-                "inv12": {
+                "ct01_inv12": {
                     "fieldName": "KwAC",
                     "hardwareId": 395523,
                     "DataSourceName": "Inversor CT1.12",
                 },
-                "inv13": {
+                "ct01_inv13": {
                     "fieldName": "KwAC",
                     "hardwareId": 395524,
                     "DataSourceName": "Inversor CT1.13",
                 },
-                "inv14": {
+                "ct02_inv01": {
                     "fieldName": "KwAC",
                     "hardwareId": 395525,
                     "DataSourceName": "Inversor CT2.01",
                 },
-                "inv15": {
+                "ct02_inv02": {
                     "fieldName": "KwAC",
                     "hardwareId": 395526,
                     "DataSourceName": "Inversor CT2.02",
                 },
-                "inv16": {
+                "ct02_inv03": {
                     "fieldName": "KwAC",
                     "hardwareId": 395527,
                     "DataSourceName": "Inversor CT2.03",
                 },
-                "inv17": {
+                "ct02_inv04": {
                     "fieldName": "KwAC",
                     "hardwareId": 395528,
                     "DataSourceName": "Inversor CT2.04",
                 },
-                "inv18": {
+                "ct02_inv05": {
                     "fieldName": "KwAC",
                     "hardwareId": 395529,
                     "DataSourceName": "Inversor CT2.05",
                 },
-                "inv19": {
+                "ct02_inv06": {
                     "fieldName": "KwAC",
                     "hardwareId": 395530,
                     "DataSourceName": "Inversor CT2.06",
                 },
-                "inv20": {
+                "ct02_inv07": {
                     "fieldName": "KwAC",
                     "hardwareId": 395531,
                     "DataSourceName": "Inversor CT2.07",
                 },
-                "inv21": {
+                "ct02_inv08": {
                     "fieldName": "KwAC",
                     "hardwareId": 395532,
                     "DataSourceName": "Inversor CT2.08",
                 },
-                "inv22": {
+                "ct02_inv09": {
                     "fieldName": "KwAC",
                     "hardwareId": 395533,
                     "DataSourceName": "Inversor CT2.09",
                 },
-                "inv23": {
+                "ct01_inv10": {
                     "fieldName": "KwAC",
                     "hardwareId": 395534,
                     "DataSourceName": "Inversor CT2.10",
                 },
-                "inv24": {
+                "ct01_inv11": {
                     "fieldName": "KwAC",
                     "hardwareId": 395535,
                     "DataSourceName": "Inversor CT2.11",
                 },
-                "inv25": {
+                "ct01_inv12": {
                     "fieldName": "KwAC",
                     "hardwareId": 395536,
                     "DataSourceName": "Inversor CT2.12",
                 },
-                "inv26": {
+                "ct01_inv13": {
                     "fieldName": "KwAC",
                     "hardwareId": 395537,
                     "DataSourceName": "Inversor CT2.13",
@@ -4872,62 +4875,62 @@ DataSourceMap = {
                 }
             },
             "Generation": {
-                "inv1": {
+                "ct01_inv01": {
                     "fieldName": "KW",
                     "hardwareId": 395294,
                     "DataSourceName": "Inversor CT1.01",
                 },
-                "inv2": {
+                "ct01_inv02": {
                     "fieldName": "KW",
                     "hardwareId": 395295,
                     "DataSourceName": "Inversor CT1.02",
                 },
-                "inv3": {
+                "ct01_inv03": {
                     "fieldName": "KW",
                     "hardwareId": 395296,
                     "DataSourceName": "Inversor CT1.03",
                 },
-                "inv4": {
+                "ct01_inv04": {
                     "fieldName": "KW",
                     "hardwareId": 395297,
                     "DataSourceName": "Inversor CT1.04",
                 },
-                "inv5": {
+                "ct01_inv05": {
                     "fieldName": "KW",
                     "hardwareId": 395298,
                     "DataSourceName": "Inversor CT1.05",
                 },
-                "inv6": {
+                "ct01_inv06": {
                     "fieldName": "KW",
                     "hardwareId": 395299,
                     "DataSourceName": "Inversor CT1.06",
                 },
-                "inv7": {
+                "ct01_inv07": {
                     "fieldName": "KW",
                     "hardwareId": 395300,
                     "DataSourceName": "Inversor CT1.07",
                 },
-                "inv8": {
+                "ct01_inv08": {
                     "fieldName": "KW",
                     "hardwareId": 395301,
                     "DataSourceName": "Inversor CT1.08",
                 },
-                "inv9": {
+                "ct01_inv09": {
                     "fieldName": "KW",
                     "hardwareId": 395302,
                     "DataSourceName": "Inversor CT1.09",
                 },
-                "inv10": {
+                "ct01_inv10": {
                     "fieldName": "KW",
                     "hardwareId": 395303,
                     "DataSourceName": "Inversor CT1.10",
                 },
-                "inv11": {
+                "ct01_inv11": {
                     "fieldName": "KW",
                     "hardwareId": 395304,
                     "DataSourceName": "Inversor CT1.11",
                 },
-                "inv12": {
+                "ct01_inv12": {
                     "fieldName": "KW",
                     "hardwareId": 395305,
                     "DataSourceName": "Inversor CT1.12",
@@ -4998,62 +5001,62 @@ DataSourceMap = {
                 }
             },
             "Generation": {
-                "inv1": {
+                "ct01_inv01": {
                     "fieldName": "KW",
                     "hardwareId": 395639,
                     "DataSourceName": "Inversor CT1.01",
                 },
-                "inv2": {
+                "ct01_inv02": {
                     "fieldName": "KW",
                     "hardwareId": 395640,
                     "DataSourceName": "Inversor CT1.02",
                 },
-                "inv3": {
+                "ct01_inv03": {
                     "fieldName": "KW",
                     "hardwareId": 395641,
                     "DataSourceName": "Inversor CT1.03",
                 },
-                "inv4": {
+                "ct01_inv04": {
                     "fieldName": "KW",
                     "hardwareId": 395642,
                     "DataSourceName": "Inversor CT1.04",
                 },
-                "inv5": {
+                "ct01_inv05": {
                     "fieldName": "KW",
                     "hardwareId": 395643,
                     "DataSourceName": "Inversor CT1.05",
                 },
-                "inv6": {
+                "ct01_inv06": {
                     "fieldName": "KW",
                     "hardwareId": 395644,
                     "DataSourceName": "Inversor CT1.06",
                 },
-                "inv7": {
+                "ct01_inv07": {
                     "fieldName": "KW",
                     "hardwareId": 395645,
                     "DataSourceName": "Inversor CT1.07",
                 },
-                "inv8": {
+                "ct01_inv08": {
                     "fieldName": "KW",
                     "hardwareId": 395646,
                     "DataSourceName": "Inversor CT1.08",
                 },
-                "inv9": {
+                "ct01_inv09": {
                     "fieldName": "KW",
                     "hardwareId": 395647,
                     "DataSourceName": "Inversor CT1.09",
                 },
-                "inv10": {
+                "ct01_inv10": {
                     "fieldName": "KW",
                     "hardwareId": 395648,
                     "DataSourceName": "Inversor CT1.10",
                 },
-                "inv11": {
+                "ct01_inv11": {
                     "fieldName": "KW",
                     "hardwareId": 395649,
                     "DataSourceName": "Inversor CT1.11",
                 },
-                "inv12": {
+                "ct01_inv12": {
                     "fieldName": "KW",
                     "hardwareId": 395650,
                     "DataSourceName": "Inversor CT1.12",
@@ -5124,62 +5127,62 @@ DataSourceMap = {
                 }
             },
             "Generation": {
-                "inv1": {
+                "ct01_inv01": {
                     "fieldName": "KW",
                     "hardwareId": 394097,
                     "DataSourceName": "Inversor CT1.01",
                 },
-                "inv2": {
+                "ct01_inv02": {
                     "fieldName": "KW",
                     "hardwareId": 394098,
                     "DataSourceName": "Inversor CT1.02",
                 },
-                "inv3": {
+                "ct01_inv03": {
                     "fieldName": "KW",
                     "hardwareId": 394099,
                     "DataSourceName": "Inversor CT1.03",
                 },
-                "inv4": {
+                "ct01_inv04": {
                     "fieldName": "KW",
                     "hardwareId": 394100,
                     "DataSourceName": "Inversor CT1.04",
                 },
-                "inv5": {
+                "ct01_inv05": {
                     "fieldName": "KW",
                     "hardwareId": 394101,
                     "DataSourceName": "Inversor CT1.05",
                 },
-                "inv6": {
+                "ct01_inv06": {
                     "fieldName": "KW",
                     "hardwareId": 394102,
                     "DataSourceName": "Inversor CT1.06",
                 },
-                "inv7": {
+                "ct01_inv07": {
                     "fieldName": "KW",
                     "hardwareId": 394103,
                     "DataSourceName": "Inversor CT1.07",
                 },
-                "inv8": {
+                "ct01_inv08": {
                     "fieldName": "KW",
                     "hardwareId": 394104,
                     "DataSourceName": "Inversor CT1.08",
                 },
-                "inv9": {
+                "ct01_inv09": {
                     "fieldName": "KW",
                     "hardwareId": 394105,
                     "DataSourceName": "Inversor CT1.09",
                 },
-                "inv10": {
+                "ct01_inv10": {
                     "fieldName": "KW",
                     "hardwareId": 394106,
                     "DataSourceName": "Inversor CT1.10",
                 },
-                "inv11": {
+                "ct01_inv11": {
                     "fieldName": "KW",
                     "hardwareId": 394107,
                     "DataSourceName": "Inversor CT1.11",
                 },
-                "inv12": {
+                "ct01_inv12": {
                     "fieldName": "KW",
                     "hardwareId": 394108,
                     "DataSourceName": "Inversor CT1.12",

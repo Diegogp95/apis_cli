@@ -21,7 +21,7 @@ def main(argv):
 
     with open(os.path.join(os.path.dirname(__file__), "../config.json"), "r") as file:
         data = json.load(file)
-    token = data["token"]
+    token = data["alsoenergy_token"]
 
     url = InfoMap["AlsoEnergy"]["paths"]["BASE"] + InfoMap["AlsoEnergy"]["paths"]["HARDWARE"]
     headers = InfoMap["AlsoEnergy"]["headers"]

@@ -276,6 +276,8 @@ def get_data(portafolio, config_file_path, start_date, end_date, datasource_ids=
 
     if portafolio == "GPM":
         datasource_ids = ",".join(map(str, datasource_ids))
+        if tz:
+            headers["TimeZone"] = tz
 
         params = {
             "dataSourceIds": datasource_ids,
@@ -326,10 +328,10 @@ def get_data(portafolio, config_file_path, start_date, end_date, datasource_ids=
         response.raise_for_status()
     except requests.exceptions.HTTPError as err:
         print(err)
-        return None
+        raise err
     except requests.exceptions.RequestException as err:
         print(err)
-        return None
+        raise err
 
     try:
         DATA = response.json()

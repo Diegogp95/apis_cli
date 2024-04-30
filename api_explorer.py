@@ -205,7 +205,6 @@ def main(argv):
                     end_date = datetime.strptime(arg, "%Y-%m-%dT%H:%M:%S").isoformat()
                 except ValueError:
                     end_date = datetime.fromisoformat(arg).isoformat()
-                    print(f"Fecha de fin: {end_date}")
             except ValueError:
                 print("Error: La fecha debe estar en el formato 'YYYY-mm-ddTHH:MM:SS', formato ISO 8601.")
                 sys.exit(1)
@@ -473,11 +472,11 @@ def main(argv):
             if mode == 'pipe':
                 return get_data(portafolio, config_file_path, start_date, end_date,
                         datasource_ids=ids, grouping=grouping, granularity=granularity,
-                        aggregation=aggregation, mode=mode)
+                        aggregation=aggregation, tz=tz, mode=mode)
             else:
                 get_data(portafolio, config_file_path, start_date, end_date,
                         datasource_ids=ids, grouping=grouping, granularity=granularity,
-                        aggregation=aggregation)
+                        aggregation=aggregation, tz=tz)
             
         elif portafolio == "AlsoEnergy":
             if mode == 'pipe':
