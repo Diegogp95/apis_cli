@@ -37,6 +37,7 @@ def main(args):
     try:
         with open(path_file, "r") as f:
             data = json.load(f)
+        data_length = len(data)
 
     except FileNotFoundError:
         print(f"Error: Archivo no encontrado - {file}")
@@ -106,6 +107,7 @@ def main(args):
         json.dump(incidentes, f, indent=4)
 
     print(f"Data imputada: {len(incidentes)} incidentes")
+    print(f"Entradas iniciales: {data_length}, entradas finales: {len(data)}")
     print(f"Archivo imputado guardado en {output_imputed_path}")
 
     return

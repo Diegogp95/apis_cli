@@ -161,7 +161,8 @@ def main(argv):
                                         value = item["data"][index]
                                         break
                                 if item["timestamp"] not in output_data:
-                                    output_data[item["timestamp"]] = {"timestamp": item["timestamp"]}
+                                    timestamp = datetime.fromisoformat(item["timestamp"]).replace(tzinfo=None)
+                                    output_data[item["timestamp"]] = {"timestamp": timestamp.isoformat()}
                                 output_data[item["timestamp"]][field] = value
 
                     except (json.JSONDecodeError, req_exceptions.HTTPError, req_exceptions.RequestException) as e:
@@ -169,7 +170,6 @@ def main(argv):
                         continue
             # with open('asd.json', 'w') as f:
             #     json.dump(table_data, f, indent=4)
-
 
 
             if table_name == "Generation" and portafolio == "GPM":
@@ -192,15 +192,8 @@ def main(argv):
                                 returned_energy_data = {"Date": entry["Date"], "Value": None}
                         timestamp_data = [matched for matched in table_data if matched["Date"] == entry["Date"]]
 
-                        if tz:
-                            try:
-                                timestamp = timezone.localize(datetime.fromisoformat(entry["Date"]))
-                            except ValueError:
-                                timestamp = datetime.fromisoformat(entry["Date"]).replace(tzinfo=None)
-                                timestamp = timezone.localize(timestamp)
-                            output_data[entry["Date"]] = {"timestamp": timestamp.isoformat()}
-                        else:
-                            output_data[entry["Date"]] = {"timestamp": entry["Date"]}
+                        timestamp = datetime.fromisoformat(entry["Date"]).replace(tzinfo=None)
+                        output_data[entry["Date"]] = {"timestamp": timestamp.isoformat()}
                         output_data[entry["Date"]].update({
                             field: next((entryy["Value"] for entryy in timestamp_data if entryy["DataSourceId"] == field_dict[field]["DataSourceId"]), None) for field in fields
                         })
