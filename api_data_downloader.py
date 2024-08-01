@@ -70,6 +70,8 @@ def main(argv):
     output_folder_path = os.path.join("data_output/", portafolio)
 
 
+    if not os.path.exists("data_output"):
+        os.makedirs("data_output")
 
     if not os.path.exists(output_folder_path):   
         os.makedirs(output_folder_path) 
@@ -86,6 +88,13 @@ def main(argv):
     if portafolio == "AlsoEnergy":
         also_query_file_path = os.path.join(output_folder_path, "AlsoEnergyQuery.json")
         api.main(["-S", "--portafolio", portafolio, "-o", "AUTH"])
+        start_query = start_date + "T00:15:00"
+        _, next_day = validate_date(end_date)
+        end_query = next_day.split("T")[0] + "T00:00:01"
+
+    elif portafolio == "GPM":
+        start_query = start_date + "T00:00:00"
+        end_query = end_date + "T23:45:00"
 
     if tz:
         timezone = pytz.timezone(tz)
@@ -119,7 +128,7 @@ def main(argv):
                     ids = [field_dict[field]["DataSourceId"] for field in queryset]
                     ids_str = ",".join(map(str, ids))
                     args = ["-S", "--portafolio", portafolio, "--plant-id", str(plant_id),
-                            "--start-date", start_date, "--end-date", end_date, "--ids",
+                            "--start-date", start_query, "--end-date", end_query, "--ids",
                             ids_str, "-o", "DATA", "--pipe", "--grouping", "minute",
                             "--granularity", str(15), "--aggregation", str(1)]
                     
@@ -145,7 +154,7 @@ def main(argv):
                         json.dump(body, file, indent=4)
 
                     args = ["-S", "--portafolio", portafolio, "--plant-id", str(plant_id),
-                            "--start-date", start_date, "--end-date", end_date,
+                            "--start-date", start_query, "--end-date", end_query,
                             "--also-query-file", also_query_file_path, "--pipe",
                             "--bin-size", "Bin15Min", "-o", "DATA", "--tz", tz]
 
@@ -174,7 +183,7 @@ def main(argv):
 
             if table_name == "Generation" and portafolio == "GPM":
                 args = ["-S", "--portafolio", portafolio, "--plant-id", str(plant_id),
-                        "--start-date", start_date, "--end-date", end_date, "--ids",
+                        "--start-date", start_query, "--end-date", end_query, "--ids",
                         str(field_dict["act_energy"]["DataSourceId"]), "-o", "DATA",
                         "--pipe", "--grouping", "minute", "--granularity", str(15),
                         "--aggregation", str(28)]
@@ -208,8 +217,7 @@ def main(argv):
                 json.dump(output_data, file, indent=4)
     if portafolio == "AlsoEnergy":
         os.remove(also_query_file_path)
-    return
-                
+    return output_path
 
 
 

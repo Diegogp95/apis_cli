@@ -5,6 +5,16 @@ from InfoMap import InfoMap
 from datasources_mapping.DataSourceMap import DataSourceMap
 from datetime import timedelta, datetime
 
+def validate_date(date_str):
+    try:
+        date = datetime.strptime(date_str, "%Y-%m-%d")
+        next_day = date + timedelta(days=1)
+        return date.isoformat(), next_day.isoformat()
+    except ValueError as e:
+        print(e)
+        print("Error: La fecha proporcionada no es válida. Debe estar en formato YYYY-MM-DD.")
+        sys.exit(1)
+
 
 def main(args):
 
@@ -50,7 +60,7 @@ def main(args):
 
     if portafolio == 'GPM':
         start_date = datetime.fromisoformat(start_date) + timedelta(minutes=15)
-        start_date = start_date.isoformat()
+        start_date = start_date.isoformat().split('T')[0]
 
 
     plant_id = InfoMap[portafolio]["plants"][plant_name]
@@ -65,7 +75,11 @@ def main(args):
                 if value < 0:
                     element[key] = 0
 
-    date_range = pd.date_range(start=start_date, end=end_date, freq="15min")
+    start_range = start_date + 'T00:15:00'
+    _, next_day = validate_date(end_date)
+    end_range = next_day.split('T')[0] + 'T00:00:00'
+
+    date_range = pd.date_range(start=start_range, end=end_range, freq="15min")
     timestamps = [date.isoformat() for date in date_range]
     # timestamps = timestamps[:-1]
 
@@ -86,7 +100,7 @@ def main(args):
                 if emptyFields:
                     incidentes.append({
                         "timestamp": timestamp,
-                        "emptyFields": emptyFields
+                        "fields": emptyFields
                     })
                 break
         if not found:
@@ -96,7 +110,7 @@ def main(args):
             })
             incidentes.append({
                 "timestamp": timestamp,
-                "emptyFields": list(datasourceMap.keys())
+                "fields": list(datasourceMap.keys())
             })
     
     data = sorted(data, key=lambda x: x["timestamp"])
@@ -110,7 +124,7 @@ def main(args):
     print(f"Entradas iniciales: {data_length}, entradas finales: {len(data)}")
     print(f"Archivo imputado guardado en {output_imputed_path}")
 
-    return
+    return output_imputed_path, output_incidents_path
 
 
 
