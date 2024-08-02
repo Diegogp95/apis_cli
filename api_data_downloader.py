@@ -1,8 +1,8 @@
 import json
 import sys, os, getopt
-from datasources_mapping.DataSourceMap import DataSourceMap
-from InfoMap import InfoMap
-import api_explorer as api
+from .datasources_mapping.DataSourceMap import DataSourceMap
+from .InfoMap import InfoMap
+from . import api_explorer as api
 from datetime import datetime, timedelta
 from requests import exceptions as req_exceptions
 import pytz
@@ -65,6 +65,8 @@ def main(argv):
 
         elif option in ("-d", "--day"):
             start_date, end_date = validate_date(argument)
+            start_date = start_date.split("T")[0]
+            end_date = end_date.split("T")[0]
 
     portafolio = args[0]
     output_folder_path = os.path.join("data_output/", portafolio)
@@ -89,8 +91,12 @@ def main(argv):
         also_query_file_path = os.path.join(output_folder_path, "AlsoEnergyQuery.json")
         api.main(["-S", "--portafolio", portafolio, "-o", "AUTH"])
         start_query = start_date + "T00:15:00"
-        _, next_day = validate_date(end_date)
-        end_query = next_day.split("T")[0] + "T00:00:01"
+        if any(option in ("-d", "--day") for option, value in options):
+            end_query = end_date + "T00:00:01"
+        else:
+            _, next_day = validate_date(end_date)
+            end_query = next_day.split("T")[0] + "T00:00:01"
+        print(start_query, end_query)
 
     elif portafolio == "GPM":
         start_query = start_date + "T00:00:00"
@@ -106,13 +112,26 @@ def main(argv):
         #     start_date = timezone.localize(datetime.fromisoformat(start_date)).isoformat()
         #     end_date = timezone.localize(datetime.fromisoformat(end_date)).isoformat()
 
+    gen_data_paths = []
+    weather_data_paths = []
+
     for plant in plants.keys():
         plant_id = plants[plant]
         print(f"\tPlanta: {plant}")
         for table_name, field_dict in DataSourceMap[portafolio][plant].items():
-            output_path = os.path.join(
-                output_folder_path,
-                plant + "-" + table_name + "_date=" + start_date + "_" + end_date + ".json")
+            if any(option in ("-d", "--day") for option, value in options): 
+                output_path = os.path.join(
+                    output_folder_path,
+                    plant + "-" + table_name + "_date=" + start_date + ".json")
+            else:
+                output_path = os.path.join(
+                    output_folder_path,
+                    plant + "-" + table_name + "_range=" + start_date + "_" + end_date + ".json")
+                
+            if table_name == "Generation":
+                gen_data_paths.append(output_path)
+            elif table_name == "Weather":
+                weather_data_paths.append(output_path)
             if portafolio == "GPM":
                 fields = [field for field in field_dict if field != "act_energy"]
             elif portafolio == "AlsoEnergy":
@@ -217,7 +236,7 @@ def main(argv):
                 json.dump(output_data, file, indent=4)
     if portafolio == "AlsoEnergy":
         os.remove(also_query_file_path)
-    return output_path
+    return gen_data_paths, weather_data_paths
 
 
 

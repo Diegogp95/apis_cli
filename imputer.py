@@ -1,8 +1,8 @@
 import json
 import os,sys
 import pandas as pd
-from InfoMap import InfoMap
-from datasources_mapping.DataSourceMap import DataSourceMap
+from .InfoMap import InfoMap
+from .datasources_mapping.DataSourceMap import DataSourceMap
 from datetime import timedelta, datetime
 
 def validate_date(date_str):
@@ -53,10 +53,18 @@ def main(args):
         print(f"Error: Archivo no encontrado - {file}")
         sys.exit(1)
 
+
     plant_name = file.split("-")[0]
-    table_name = file.split("-")[1].split("_date=")[0]
-    start_date = file.split("date=")[1].split("_")[0]
-    end_date = file.split("date=")[1].split("_")[1].split(".")[0]
+
+    if "_date=" in file:
+        table_name = file.split("-")[1].split("_date=")[0]
+        start_date = file.split("date=")[1].split(".")[0]
+        end_date = start_date
+
+    else:
+        table_name = file.split("-")[1].split("_range=")[0]
+        start_date = file.split("range=")[1].split("_")[0]
+        end_date = file.split("range=")[1].split("_")[1].split(".")[0]
 
     if portafolio == 'GPM':
         start_date = datetime.fromisoformat(start_date) + timedelta(minutes=15)
@@ -65,8 +73,12 @@ def main(args):
 
     plant_id = InfoMap[portafolio]["plants"][plant_name]
 
-    output_imputed_path = f"imputed/{portafolio}/{plant_name}-{table_name}_{start_date}_{end_date}.json"
-    output_incidents_path = f"imputed/{portafolio}/incidents/{plant_name}-{table_name}_{start_date}_{end_date}.json"
+    if end_date == start_date:
+        output_imputed_path = f"imputed/{portafolio}/{plant_name}-{table_name}_{start_date}.json"
+        output_incidents_path = f"imputed/{portafolio}/incidents/{plant_name}-{table_name}_{start_date}.json"
+    else:
+        output_imputed_path = f"imputed/{portafolio}/{plant_name}-{table_name}_{start_date}_{end_date}.json"
+        output_incidents_path = f"imputed/{portafolio}/incidents/{plant_name}-{table_name}_{start_date}_{end_date}.json"
 
     ## Reemplazar valores negativos por 0
     for element in data:

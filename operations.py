@@ -2,7 +2,7 @@ import requests
 import os, sys
 from dotenv import load_dotenv
 import json
-from InfoMap import InfoMap
+from .InfoMap import InfoMap
 
 # Cargar variables de entorno
 load_dotenv()

@@ -1,9 +1,9 @@
 from datetime import datetime
 import sys, getopt, os
 import json
-from operations import *
-from options_handlers import *
-from InfoMap import InfoMap
+from .operations import *
+from .options_handlers import *
+from .InfoMap import InfoMap
 
 
 helpmessage = '''python api_download.py [opciones]
