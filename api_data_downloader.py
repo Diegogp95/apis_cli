@@ -96,11 +96,14 @@ def main(argv):
         else:
             _, next_day = validate_date(end_date)
             end_query = next_day.split("T")[0] + "T00:00:01"
-        print(start_query, end_query)
 
     elif portafolio == "GPM":
         start_query = start_date + "T00:00:00"
-        end_query = end_date + "T23:45:00"
+        if any(option in ("-d", "--day") for option, value in options):
+            end_query = end_date + "T00:00:00"
+        else:
+            _, next_day = validate_date(end_date)
+            end_query = next_day.split("T")[0] + "T00:00:00"
 
     if tz:
         timezone = pytz.timezone(tz)
