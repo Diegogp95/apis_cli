@@ -122,7 +122,8 @@ params_msg = f'''Parametros:
 
 
 def main(argv):
-    os.makedirs("output", exist_ok=True)
+    output_folder_path = os.path.join(os.path.dirname(__file__), "output")
+    os.makedirs(output_folder_path, exist_ok=True)
 
     toPerform = []
     also_query_file = None

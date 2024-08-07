@@ -169,7 +169,7 @@ def main(argv):
                             "hardwareId": field_dict[field]["hardwareId"],
                             "siteId": plant_id,
                             "fieldName": field_dict[field]["fieldName"],
-                            "function": "Avg" if field != "act_energy" else "Sum",
+                            "function": "Avg" if field != "act_energy" else "Diff",
                         })
 
                     with open(also_query_file_path, "w") as file:
@@ -208,7 +208,7 @@ def main(argv):
                         "--start-date", start_query, "--end-date", end_query, "--ids",
                         str(field_dict["act_energy"]["DataSourceId"]), "-o", "DATA",
                         "--pipe", "--grouping", "minute", "--granularity", str(15),
-                        "--aggregation", str(28)]
+                        "--aggregation", str(27)]
                 try:
                     returned_energy_data = api.main(args)
                 except (json.JSONDecodeError, req_exceptions.HTTPError, req_exceptions.RequestException) as e:
